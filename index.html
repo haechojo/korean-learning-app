@@ -806,8 +806,8 @@
                      <div class="ai-function-menu-item" data-sub-feature-id="page-local-video" data-title="本地视频浏览">
                         <span class="icon">🎬</span> 本地视频浏览
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 完形填空">
-                        <span class="icon">🎯</span> AI 完形填空
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 克漏字填空">
+                        <span class="icon">🎯</span> AI 克漏字填空
                     </div>
                     <div class="ai-function-menu-item" data-sub-feature-id="feature-story" data-title="AI 小故事创作">
                         <span class="icon">✍️</span> AI 小故事创作
@@ -1253,9 +1253,9 @@
             { korean: "회계", pronunciation: "[hoe-gye]", chinese: "会计", korean_example: "회계 보고서를 작성해야 해요.", chinese_example: "我需要准备会计报告。" },
             { korean: "투자", pronunciation: "[tu-ja]", chinese: "投资", korean_example: "부동산에 투자했어요.", chinese_example: "我投资了房地产。" },
             { korean: "수익", pronunciation: "[su-ik]", chinese: "收益/利润", korean_example: "회사의 수익이 증가했어요.", chinese_example: "公司的收益增加了。" },
-            { korean: "비용", pronunciation: "[bi-yong]", chinese: "费用/成本", korean_example: "不必要的费用을 줄여야 해요.", chinese_example: "我们需要削减不必要的成本。" },
+            { korean: "비용", pronunciation: "[bi-yong]", chinese: "费用/成本", korean_example: "불필요한 비용을 줄여야 해요.", chinese_example: "我们需要削减不必要的成本。" },
             { korean: "시장", pronunciation: "[si-jang]", chinese: "市场", korean_example: "한국 시장을 분석하고 있어요.", chinese_example: "我正在分析韩国市场。" },
-            { korean: "전략", pronunciation: "[jeon-llyak]", chinese: "战略", korean_example: "长期적인 전략을 세워야 해요.", chinese_example: "我们需要制定长期战略。" },
+            { korean: "전략", pronunciation: "[jeon-llyak]", chinese: "战略", korean_example: "长期적인战略を 세워야 해요.", chinese_example: "我们需要制定长期战略。" },
             { korean: "고객", pronunciation: "[go-gaek]", chinese: "顾客/客户", korean_example: "고객 만족이 최우선이에요.", chinese_example: "顾客满意是我们的首要任务。" }
         ]
     };
@@ -2121,112 +2121,24 @@
         wordCardEl.classList.toggle('is-flipped', isCardFlipped);
     }
 
-    // 整合了 Google Translate TTS 和 Web Speech API 的发音函数
     function speakKoreanWord(event) {
-        if (event) event.stopPropagation(); // 阻止事件冒泡，避免触发卡片翻转
-
-        if (!wordList[currentWordIndex]) {
-            console.warn("没有当前单词可以播放。");
-            return;
+        if (event) event.stopPropagation();
+        if (!synth || !wordList[currentWordIndex]) {
+             console.log("Speech synthesis unavailable or no current word.");
+             return;
         }
-
-        const koreanWord = wordList[currentWordIndex].korean;
-        console.log("尝试播放单词:", koreanWord);
-
-        // 如果浏览器自带的TTS正在发音，先取消
-        if (synth && synth.speaking) {
-            synth.cancel();
-            console.log("取消了先前的浏览器 TTS 语音。");
+        if (synth.speaking) synth.cancel();
+        const utterThis = new SpeechSynthesisUtterance(wordList[currentWordIndex].korean);
+        let koreanVoice = synth.getVoices().find(v => v.lang === 'ko-KR' || v.lang.startsWith('ko'));
+        if (koreanVoice) {
+            utterThis.voice = koreanVoice;
+        } else {
+            utterThis.lang = 'ko-KR'; // Fallback to language code if no specific voice found
         }
-
-        // 优先尝试使用 Google Translate TTS (间接方式)
-        // 注意：这种方式是间接使用，Google可能随时更改URL结构或施加速率限制。
-        // 不适用于商业用途，仅作为免费替代方案。
-        const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(koreanWord)}&tl=ko&client=tw-ob`;
-
-        const audio = new Audio(googleTtsUrl);
-        audio.volume = 1.0; // 可以调整音量
-
-        let playAttempted = false; // 标记是否已经尝试播放
-
-        // 监听播放成功
-        audio.oncanplaythrough = () => {
-            if (!playAttempted) { // 避免重复播放
-                audio.play().then(() => {
-                    console.log("通过 Google TTS 成功播放:", koreanWord);
-                    playAttempted = true;
-                }).catch(e => {
-                    console.warn("Google TTS 播放失败 (可能被阻止或用户未交互)，尝试回退到浏览器自带 TTS:", e);
-                    // 如果Google TTS播放失败，回退到浏览器自带TTS
-                    playWithBrowserTTS(koreanWord);
-                    playAttempted = true; // 即使回退，也标记已尝试
-                });
-            }
-        };
-
-        // 监听加载错误，如果Google TTS URL加载失败，回退
-        audio.onerror = (e) => {
-            console.error("Google TTS 音频加载错误:", e);
-            if (!playAttempted) {
-                console.log("Google TTS 加载失败，回退到浏览器自带 TTS。");
-                playWithBrowserTTS(koreanWord);
-                playAttempted = true;
-            }
-        };
-
-        // 设置一个超时，如果Google TTS长时间没响应，则回退
-        setTimeout(() => {
-            if (!playAttempted) {
-                console.warn("Google TTS 响应超时，回退到浏览器自带 TTS。");
-                playWithBrowserTTS(koreanWord);
-                playAttempted = true;
-            }
-        }, 1500); // 1.5 秒后回退
-
-        // 开始加载音频，如果无法立即播放，将在 oncanplaythrough 中尝试播放
-        audio.load();
-
-
-        // 浏览器自带 TTS 的逻辑（回退方案）
-        function playWithBrowserTTS(word) {
-            if (!synth) {
-                console.warn("SpeechSynthesis 在此设备上不可用，无法回退。");
-                return;
-            }
-            if (synth.speaking) {
-                synth.cancel();
-                console.log("取消了先前的浏览器 TTS 语音。");
-            }
-
-            const utterThis = new SpeechSynthesisUtterance(word);
-            let koreanVoice = synth.getVoices().find(v => v.lang === 'ko-KR' || v.lang.startsWith('ko'));
-
-            if (koreanVoice) {
-                utterThis.voice = koreanVoice;
-                console.log("找到韩语语音:", koreanVoice.name);
-            } else {
-                utterThis.lang = 'ko-KR'; // 回退到语言代码
-                console.warn("未找到特定韩语语音，回退到 lang='ko-KR'。可用语音:", synth.getVoices().map(v => v.lang + ' (' + v.name + ')').join(', '));
-            }
-
-            utterThis.rate = 0.9;
-            utterThis.pitch = 1;
-
-            utterThis.onend = () => {
-                console.log("浏览器 TTS 播放完成:", word);
-            };
-            utterThis.onerror = (event) => {
-                console.error("浏览器 TTS 错误:", event.error);
-                // 可以在这里给用户一个提示，例如 "发音失败，请检查系统语音设置。"
-            };
-
-            try {
-                synth.speak(utterThis);
-                console.log("通过浏览器 TTS 启动播放:", word);
-            } catch (e) {
-                console.error("调用 synth.speak() 错误:", e);
-            }
-        }
+        utterThis.rate = 0.9;
+        utterThis.pitch = 1;
+        synth.speak(utterThis);
+        console.log("Speaking word:", wordList[currentWordIndex].korean);
     }
 
     // Modified nextWord function
