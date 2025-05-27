@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>韩语学习助手 (AI高级定制版)</title>
+    <title>韩语学习助手 </title>
     <style>
         :root {
             --wechat-bg-gray: #f0f2f5;
@@ -367,11 +367,13 @@
             display: flex;
             align-items: center;
         }
-        #page-settings .profile-icon {
-            font-size: 48px;
-            margin-right: 15px;
-            color: var(--wechat-text-secondary);
-        }
+		#page-settings .profile-avatar { /* 修改类名为 .profile-avatar */
+             width: 48px; /* 设置头像宽度 */
+             height: 48px; /* 设置头像高度，保持与宽度相同以实现圆形 */
+             border-radius: 50%; /* 将头像变为圆形 */
+             object-fit: cover; /* 确保图片在保持比例的同时填充整个头像区域 */
+             margin-right: 15px;
+         }
         #page-settings .profile-info h3 {
             margin: 0;
             font-size: 1.3em;
@@ -596,19 +598,18 @@
         .color-blue { background-color: #0074D9; }
         .color-purple { background-color: #B10DC9; }
 
-        /* 开屏动画样式 */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #f8f9fa; /* 浅灰色背景 */
+            background-color: #f8f9fa;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* 确保在最上层 */
+            z-index: 1000;
             opacity: 1;
             transition: opacity 1s ease-in-out;
         }
@@ -618,23 +619,23 @@
         }
 
         .splash-title-zh {
-            font-size: 2.5em; /* 增大字体 */
+            font-size: 2.5em;
             font-weight: bold;
-            color: var(--primary-color); /* 使用主题绿色 */
+            color: var(--primary-color);
             margin-bottom: 0.4em;
         }
 
         .splash-title-ko {
-            font-size: 1.8em; /* 增大字体 */
-            color: var(--ai-accent-color); /* 使用 AI 主题蓝色 */
+            font-size: 1.8em;
+            color: var(--ai-accent-color);
             margin-bottom: 0.8em;
-            font-family: 'Noto Sans KR', sans-serif; /* 确保韩文字体美观 */
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .splash-design-by {
-            font-size: 1.1em; /* 增大字体 */
-            color: var(--wechat-text-secondary); /* 灰色文字 */
-            margin-top: 1.5em; /* 增加间距 */
+            font-size: 1.1em;
+            color: var(--wechat-text-secondary);
+            margin-top: 1.5em;
         }
 
         #splash-screen.hidden {
@@ -642,38 +643,37 @@
             visibility: hidden;
         }
 
-        /* 烟花动画样式 */
         #fireworks-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* 允许点击穿透 */
+            pointer-events: none;
             z-index: 999;
-            overflow: hidden; /* 防止烟花溢出 */
+            overflow: hidden;
         }
 
         .firework {
             position: absolute;
-            width: 8px; /* 烟花粒子大小 */
+            width: 8px;
             height: 8px;
             border-radius: 50%;
-            opacity: 0; /* 初始透明 */
-            animation: shootAndExplode 1.5s ease-out forwards; /* 组合动画 */
+            opacity: 0;
+            animation: shootAndExplode 1.5s ease-out forwards;
         }
 
         @keyframes shootAndExplode {
             0% {
-                transform: translateY(200px) scale(0); /* 从底部向上射出 */
+                transform: translateY(200px) scale(0);
                 opacity: 0;
             }
             30% {
-                transform: translateY(0) scale(1); /* 射到指定高度 */
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-150px) scale(0.2); /* 爆炸并淡出 */
+                transform: translateY(-150px) scale(0.2);
                 opacity: 0;
             }
         }
@@ -692,8 +692,8 @@
             z-index: 1001;
             max-width: 80%;
             box-sizing: border-box;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInModal 0.3s forwards; /* 使用现有的 fadeInModal */
+            opacity: 0;
+            animation: fadeInModal 0.3s forwards;
         }
 
         #congratulations-modal p {
@@ -719,6 +719,76 @@
         }
         #congratulations-modal button:hover {
             background-color: darken(var(--primary-color), 10%);
+        }
+
+        .exchange-rate-input-group, .trash-input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .exchange-rate-input-group input, .trash-input-group input[type="text"] {
+            flex-grow: 1;
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+        .exchange-rate-input-group select {
+            margin-bottom: 0;
+            width: auto;
+        }
+        .exchange-rate-result, .news-output, .trash-recognition-output, .trash-text-output {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--wechat-bg-gray);
+            border-radius: 6px;
+            border: 1px solid var(--wechat-border-color);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95em;
+            color: var(--wechat-text-primary);
+            min-height: 50px;
+        }
+        body[data-theme="dark"] .exchange-rate-result,
+        body[data-theme="dark"] .news-output,
+        body[data-theme="dark"] .trash-recognition-output,
+        body[data-theme="dark"] .trash-text-output {
+            background-color: #2b2b2b;
+            border-color: #555;
+        }
+        .news-output h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .news-output p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .news-output .korean-news {
+            font-family: 'Noto Sans KR', var(--font-system);
+            color: var(--text-color);
+        }
+        .news-output .chinese-news {
+            font-size: 0.85em;
+            color: var(--wechat-text-secondary);
+        }
+        .trash-recognition-output img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .image-upload-label {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .image-upload-input {
+            display: none;
         }
     </style>
 </head>
@@ -803,14 +873,8 @@
                     <div class="ai-function-menu-item" data-sub-feature-id="page-image-recognition" data-title="AI 看图识别韩文">
                         <span class="icon">🔍</span> AI 看图识别韩文
                     </div>
-                     <div class="ai-function-menu-item" data-sub-feature-id="page-local-video" data-title="本地视频浏览">
-                        <span class="icon">🎬</span> 本地视频浏览
-                    </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 克漏字填空">
-                        <span class="icon">🎯</span> AI 克漏字填空
-                    </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-story" data-title="AI 小故事创作">
-                        <span class="icon">✍️</span> AI 小故事创作
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 完形填空">
+                        <span class="icon">🎯</span> AI 完形填空
                     </div>
                     <div class="ai-function-menu-item" data-sub-feature-id="feature-scenario" data-title="AI 情景对话模拟">
                         <span class="icon">🗣️</span> AI 情景对话模拟
@@ -821,13 +885,32 @@
                     <div class="ai-function-menu-item" data-sub-feature-id="feature-mc-questions" data-title="AI 自动生成选择题">
                         <span class="icon">❓</span> AI 自动生成选择题
                     </div>
+                    <div class="ai-function-menu-item" data-sub-feature-id="korean-life-helper-menu" data-title="韩国生活小助手">
+                        <span class="icon">🇰🇷</span> 韩国生活小助手
+                    </div>
                 </div>
+
+                <div id="korean-life-helper-menu" class="ai-sub-feature-section">
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <div class="ai-function-menu" style="display: flex;">
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-exchange-rate" data-title="汇率换算">
+                            <span class="icon">💱</span> 汇率换算
+                        </div>
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-korean-story" data-title="韩中双语小故事">
+                            <span class="icon">📚</span> 韩中双语小故事
+                        </div>
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-trash-classification" data-title="垃圾分类">
+                            <span class="icon">🗑️</span> 垃圾分类
+                        </div>
+                    </div>
+                </div>
+
 
                 <div id="page-translate" class="ai-sub-feature-section">
                     <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
                     <div class="section-container">
                         <h3 class="section-title">🌐 AI 智能互译</h3>
-                        <div class="api-key-info">🔑 AI翻译功能使用预设的API密钥。</div>
+                        <div class="api-key-info">智能翻译。</div>
                         <textarea id="text-to-translate-auto" placeholder="输入韩语或中文进行互译..."></textarea>
                         <button class="translate-button generic-button" id="do-translate-auto-btn">AI 智能互译</button>
                         <div class="translation-result-area ai-output-box" id="translation-output-auto">翻译结果将显示在此</div>
@@ -866,21 +949,6 @@
                     </div>
                 </div>
 
-                <div id="page-local-video" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
-                    <div class="section-container">
-                        <h3 class="section-title">🎬 本地视频浏览</h3>
-                        <p class="api-key-info">此功能允许您浏览本地视频文件并在线播放，AI 辅助功能正在开发中。</p>
-                        <label for="video-upload-input" id="video-upload-label">选择视频文件</label>
-                        <input type="file" id="video-upload-input" accept="video/*">
-                        <div class="file-name-display" id="video-file-name">未选择文件</div>
-
-                        <div id="video-player-container">
-                            <video id="video-player" controls style="display: none;"></video>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="feature-cloze" class="ai-sub-feature-section">
                     <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
                     <div class="section-container">
@@ -894,21 +962,6 @@
                             <div id="cloze-correct-sentence"></div>
                         </div>
                         <button class="ai-action-btn" id="generate-cloze-btn" style="margin-top:10px;">获取新填空题</button>
-                    </div>
-                </div>
-
-                <div id="feature-story" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
-                    <div class="section-container">
-                        <h3 class="section-title">✍️ AI 小故事创作</h3>
-                        <div class="story-weaver-controls">
-                            <label for="story-word-select">选择2-5个已学单词:</label>
-                            <select id="story-word-select" multiple size="5"></select>
-                            <p style="font-size:0.8em; color: var(--wechat-text-secondary)">按住 Ctrl/Cmd 点击多选。</p>
-                        </div>
-                        <button class="ai-action-btn" id="generate-story-btn">AI 帮我写故事</button>
-                        <div id="ai-generated-story-ko" class="ai-output-box" style="display:none;"><h5>🇰🇷 韩语故事:</h5><span id="story-ko-text"></span></div>
-                        <div id="ai-generated-story-zh" class="ai-output-box" style="display:none;"><h5>🇨🇳 中文翻译:</h5><span id="story-zh-text"></span></div>
                     </div>
                 </div>
 
@@ -964,14 +1017,72 @@
                     </div>
                 </div>
 
+                <div id="page-exchange-rate" class="ai-sub-feature-section">
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <div class="section-container">
+                        <h3 class="section-title">💱 人民币/韩币 汇率换算</h3>
+                        <div class="exchange-rate-input-group">
+                            <input type="number" id="exchange-input-amount" placeholder="输入金额" value="100">
+                            <select id="exchange-from-currency">
+                                <option value="CNY">人民币 (CNY)</option>
+                                <option value="KRW">韩币 (KRW)</option>
+                            </select>
+                            <span> 兑 </span>
+                            <select id="exchange-to-currency">
+                                <option value="KRW">韩币 (KRW)</option>
+                                <option value="CNY">人民币 (CNY)</option>
+                            </select>
+                        </div>
+                        <button class="ai-action-btn" id="do-exchange-rate-btn">立即换算</button>
+                        <div class="exchange-rate-result ai-output-box" id="exchange-rate-output">换算结果将显示在此。</div>
+                    </div>
+                </div>
+
+                <div id="page-korean-story" class="ai-sub-feature-section">
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <div class="section-container">
+                        <h3 class="section-title">📚 韩中双语小故事</h3>
+                        <button class="ai-action-btn" id="fetch-korean-story-btn">生成小故事</button>
+                        <div class="news-output ai-output-box" id="korean-story-output">
+                            点击上方按钮生成一个关于韩国文化或历史的双语小故事。
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-trash-classification" class="ai-sub-feature-section">
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <div class="section-container">
+                        <h3 class="section-title">🗑️ 垃圾分类 (看图识别)</h3>
+                        <label for="trash-image-upload" class="image-upload-label">选择垃圾图片</label>
+                        <input type="file" id="trash-image-upload" accept="image/*">
+                        <div id="trash-image-preview-container" style="text-align: center; margin-bottom: 10px;">
+                            <img id="trash-image-preview" src="#" alt="图片预览" style="max-width: 100%; max-height: 180px; border-radius: 6px; display: none;">
+                        </div>
+                        <button class="ai-action-btn" id="recognize-trash-image-btn" disabled>AI 识别并分类</button>
+                        <div class="trash-recognition-output ai-output-box" id="trash-image-recognition-output" style="display:none;">
+                            识别结果将显示在此。
+                        </div>
+                    </div>
+                    <div class="section-container" style="margin-top: 15px;">
+                        <h3 class="section-title">🗑️ 垃圾分类 (文字识别)</h3>
+                        <div class="trash-input-group">
+                            <input type="text" id="trash-text-input" placeholder="输入垃圾名称（韩语或中文）">
+                            <button class="ai-action-btn" id="classify-trash-text-btn">文字识别并分类</button>
+                        </div>
+                        <div class="trash-text-output ai-output-box" id="trash-text-classification-output">
+                            分类结果将显示在此。
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div id="page-settings" class="content-page">
                 <div class="profile-section">
-                    <span class="profile-icon">👤</span>
+                     <img src="https://k.sinaimg.cn/n/sinakd10107/452/w1079h973/20200331/5d90-irpunah6808860.jpg/w700d1q75cms.jpg" alt="用户头像" class="profile-avatar">
                     <div class="profile-info">
                         <h3><span id="current-username-display">用户名</span></h3>
-                        <p>欢迎回来！</p>
+                        <p>尊贵的永久VIP会员</p>
                     </div>
                 </div>
 
@@ -1090,7 +1201,7 @@
 
 
 <script>
-    const GEMINI_API_KEY = "AIzaSyDlBJ3rTN0VlfLDKHgyJiqQ1VoYIcw9bXs"; // 确保这里是您的有效API密钥
+    const GEMINI_API_KEY = "AIzaSyDlBJ3rTN0VlfLDKHgyJiqQ1VoYIcw9bXs";
 
     const appWrapperEl = document.getElementById('app-wrapper');
     const appHeaderTitleEl = document.getElementById('app-header-title');
@@ -1141,10 +1252,6 @@
     let uploadedImageBase64Rec = null;
     let uploadedImageMimeTypeRec = null;
 
-    const videoUploadInputEl = document.getElementById('video-upload-input');
-    const videoPlayerEl = document.getElementById('video-player');
-    const videoFileNameDisplayEl = document.getElementById('video-file-name');
-
     const clozeQuestionTextEl = document.getElementById('cloze-question-text');
     const clozeHintTextEl = document.getElementById('cloze-hint-text');
     const clozeAnswerInputEl = document.getElementById('cloze-answer-input');
@@ -1153,13 +1260,6 @@
     const generateClozeBtnEl = document.getElementById('generate-cloze-btn');
     const submitClozeBtnEl = document.getElementById('submit-cloze-btn');
     let currentClozeWordData = null;
-
-    const storyWordSelectEl = document.getElementById('story-word-select');
-    const generateStoryBtnEl = document.getElementById('generate-story-btn');
-    const aiGeneratedStoryKoBox = document.getElementById('ai-generated-story-ko');
-    const storyKoTextEl = document.getElementById('story-ko-text');
-    const aiGeneratedStoryZhBox = document.getElementById('ai-generated-story-zh');
-    const storyZhTextEl = document.getElementById('story-zh-text');
 
     const aiScenarioDescriptionEl = document.getElementById('ai-scenario-description');
     const aiScenarioDialogueHistoryEl = document.getElementById('ai-scenario-dialogue-history');
@@ -1174,7 +1274,6 @@
     const essayFeedbackAreaEl = document.getElementById('essay-feedback-area');
 
     const mcCategoryRadioBtns = document.querySelectorAll('input[name="mc-category"]');
-    const mcTopicInputEl = document.getElementById('mc-topic');
     const mcCountInputEl = document.getElementById('mc-count');
     const generateMcBtnEl = document.getElementById('generate-mc-btn');
     const mcQuestionsAreaEl = document.getElementById('mc-questions-area');
@@ -1194,11 +1293,30 @@
     const calendarGridEl = document.getElementById('calendar-grid');
     const calendarMonthYearEl = document.getElementById('calendar-month-year');
 
-    // 新增开屏动画和烟花相关元素
     const splashScreen = document.getElementById('splash-screen');
     const fireworksContainer = document.getElementById('fireworks-container');
     const congratulationsModal = document.getElementById('congratulations-modal');
     const closeCongratsModalButton = document.getElementById('close-congrats-modal');
+
+    const exchangeInputAmountEl = document.getElementById('exchange-input-amount');
+    const exchangeFromCurrencyEl = document.getElementById('exchange-from-currency');
+    const exchangeToCurrencyEl = document.getElementById('exchange-to-currency');
+    const doExchangeRateBtnEl = document.getElementById('do-exchange-rate-btn');
+    const exchangeRateOutputEl = document.getElementById('exchange-rate-output');
+
+    const fetchKoreanStoryBtnEl = document.getElementById('fetch-korean-story-btn');
+    const koreanStoryOutputEl = document.getElementById('korean-story-output');
+
+    const trashImageUploadEl = document.getElementById('trash-image-upload');
+    const trashImagePreviewEl = document.getElementById('trash-image-preview');
+    const recognizeTrashImageBtnEl = document.getElementById('recognize-trash-image-btn');
+    const trashImageRecognitionOutputEl = document.getElementById('trash-image-recognition-output');
+    let uploadedTrashImageBase64 = null;
+    let uploadedTrashImageMimeType = null;
+
+    const trashTextInputEl = document.getElementById('trash-text-input');
+    const classifyTrashTextBtnEl = document.getElementById('classify-trash-text-btn');
+    const trashTextClassificationOutputEl = document.getElementById('trash-text-classification-output');
 
 
     let allWordLists = {
@@ -1213,7 +1331,7 @@
             { korean: "사랑", pronunciation: "[sa-rang]", chinese: "爱", korean_example: "사랑은 아름다운 감정이에요.", chinese_example: "爱是一种美丽的情感。" },
             { korean: "행복", pronunciation: "[haeng-bok]", chinese: "幸福", korean_example: "모두가 행복하길 바라요.", chinese_example: "希望所有人都幸福。" },
             { korean: "시간", pronunciation: "[si-gan]", chinese: "时间", korean_example: "시간就是金钱。", chinese_example: "时间就是金钱。" },
-            { korean: "책", pronunciation: "[chaek]", chinese: "书", korean_example: "저는 책을 읽는 것을 좋아해요.", chinese_example: "我喜欢读书。" },
+            { korean: "책", pronunciation: "[chaek]", chinese: "书", korean_example: " 저는 책을 읽는 것을 좋아해요.", chinese_example: "我喜欢读书。" },
             { korean: "친구", pronunciation: "[chin-gu]", chinese: "朋友", korean_example: "저는 좋은 친구가 많아요.", chinese_example: "我有很多好朋友。" },
             { korean: "학교", pronunciation: "[hak-gyo]", chinese: "学校", korean_example: "학교에 매일 가요.", chinese_example: "我每天去学校。" },
             { korean: "음식", pronunciation: "[eum-sik]", chinese: "食物", korean_example: "한국 음식을 좋아해요.", chinese_example: "我喜欢韩国食物。" },
@@ -1234,7 +1352,7 @@
             { korean: "많다", pronunciation: "[man-ta]", chinese: "多", korean_example: "친구가 많아요.", chinese_example: "朋友很多。" },
             { korean: "없다", pronunciation: "[eop-da]", chinese: "没有", korean_example: "돈이 없어요.", chinese_example: "我没有钱。" }
         ],
-        computer: [
+		computer: [
             { korean: "컴퓨터", pronunciation: "[keom-pyu-teo]", chinese: "电脑", korean_example: "새 컴퓨터를 샀어요.", chinese_example: "我买了新电脑。" },
             { korean: "소프트웨어", pronunciation: "[so-peu-teu-we-eo]", chinese: "软件", korean_example: "이 소프트웨어를 설치해야 해요.", chinese_example: "我需要安装这个软件。" },
             { korean: "하드웨어", pronunciation: "[ha-deu-we-eo]", chinese: "硬件", korean_example: "컴퓨터 하드웨어는 중요해요.", chinese_example: "电脑硬件很重要。" },
@@ -1244,9 +1362,29 @@
             { korean: "알고리즘", pronunciation: "[al-go-ri-jeum]", chinese: "算法", korean_example: "이 알고리즘은 매우 효율적이에요.", chinese_example: "这个算法非常高效。" },
             { korean: "인공지능", pronunciation: "[in-gong-ji-neung]", chinese: "人工智能", korean_example: "인공지능은 미래 기술이에요.", chinese_example: "人工智能是未来的技术。" },
             { korean: "클라우드", pronunciation: "[keul-la-u-deu]", chinese: "云（计算）", korean_example: "클라우드 서비스를 이용하고 있어요.", chinese_example: "我正在使用云计算服务。" },
-            { korean: "보안", pronunciation: "[bo-an]", chinese: "安全（信息安全）", korean_example: "정보 보안이 매우 중요해요.", chinese_example: "信息安全非常重要。" }
+            { korean: "보안", pronunciation: "[bo-an]", chinese: "安全（信息安全）", korean_example: "정보 보안이 매우 중요해요.", chinese_example: "信息安全非常重要。" },
+            { korean: "코딩", pronunciation: "[ko-ding]", chinese: "编码/程式码", korean_example: "파이썬으로 코딩을 시작했어요.", chinese_example: "我开始用Python编码了。" },
+            { korean: "서버", pronunciation: "[seo-beo]", chinese: "伺服器", korean_example: "웹사이트 서버가 다운됐어요.", chinese_example: "网站伺服器宕机了。" },
+            { korean: "앱", pronunciation: "[aep]", chinese: "应用程式", korean_example: "새로운 모바일 앱을 개발 중이에요.", chinese_example: "我正在开发一个新的行动应用程式。" },
+            { korean: "개발자", pronunciation: "[gae-bal-ja]", chinese: "开发者", korean_example: "이 소프트웨어는 유능한 개발자들이 만들었어요.", chinese_example: "这个软体是由有能力的开发者们製作的。" },
+            { korean: "인터넷", pronunciation: "[in-teo-net]", chinese: "互联网", korean_example: "인터넷으로 정보를 찾아요.", chinese_example: "我通过互联网查找资讯。" },
+            { korean: "프로젝트", pronunciation: "[peu-ro-jek-teu]", chinese: "专案", korean_example: "새로운 프로젝트를 시작했어요.", chinese_example: "我开始了一个新的专案。" },
+            { korean: "웹사이트", pronunciation: "[web-sa-i-teu]", chinese: "网站", korean_example: "이 웹사이트는 디자인이 예뻐요.", chinese_example: "这个网站的设计很漂亮。" },
+            { korean: "데이터베이스", pronunciation: "[de-i-teo-be-i-seu]", chinese: "资料库", korean_example: "데이터베이스를 관리하는 방법을 배웠어요.", chinese_example: "我学会了如何管理资料库。" },
+            { korean: "컴파일", pronunciation: "[keom-pa-il]", chinese: "编译", korean_example: "소프트웨어 코드를 컴파일해야 해요.", chinese_example: "我需要编译软体程式码。" },
+            { korean: "버그", pronunciation: "[beo-geu]", chinese: "错误/缺陷", korean_example: "프로그램에 버그가 있어서 수정 중이에요.", chinese_example: "程式有错误，我正在修复。" },
+            { korean: "운영체제", pronunciation: "[un-yeong-che-je]", chinese: "作业系统", korean_example: "새로운 운영체제가 출시됐어요.", chinese_example: "新的作业系统发布了。" },
+            { korean: "프로세서", pronunciation: "[peu-ro-se-seo]", chinese: "处理器", korean_example: "이 컴퓨터는 빠른 프로세서를 가지고 있어요.", chinese_example: "这台电脑有很快的处理器。" },
+            { korean: "메모리", pronunciation: "[me-mo-ri]", chinese: "记忆体", korean_example: "컴퓨터 메모리를 업그레이드했어요.", chinese_example: "我升级了电脑记忆体。" },
+            { korean: "저장장치", pronunciation: "[jeo-jang-jang-chi]", chinese: "储存装置", korean_example: "외장 저장장치가 필요해요.", chinese_example: "我需要一个外部储存装置。" },
+            { korean: "그래픽카드", pronunciation: "[geu-rae-pik-ka-deu]", chinese: "显示卡", korean_example: "게임을 위해 좋은 그래픽카드가 필요해요.", chinese_example: "玩游戏需要好的显示卡。" },
+            { korean: "모니터", pronunciation: "[mo-ni-teo]", chinese: "显示器", korean_example: "새 모니터를 구입했어요.", chinese_example: "我买了一个新显示器。" },
+            { korean: "키보드", pronunciation: "[ki-bo-deu]", chinese: "键盘", korean_example: "이 키보드는 타이핑하기 편해요.", chinese_example: "这个键盘打字很舒服。" },
+            { korean: "마우스", pronunciation: "[ma-u-seu]", chinese: "滑鼠", korean_example: "무선 마우스를 사용해요.", chinese_example: "我使用无线滑鼠。" },
+            { korean: "프린터", pronunciation: "[peu-rin-teo]", chinese: "印表机", korean_example: "프린터로 문서를 출력했어요.", chinese_example: "我用印表机列印了文件。" },
+            { korean: "스캐너", pronunciation: "[seu-kae-neo]", chinese: "扫描器", korean_example: "문서를 스캐너로 디지털화했어요.", chinese_example: "我用扫描器将文件数位化了。" }
         ],
-        business: [
+		business: [
             { korean: "경제", pronunciation: "[gyeong-je]", chinese: "经济", korean_example: "세계 경제가 어렵습니다.", chinese_example: "世界经济很困难。" },
             { korean: "경영", pronunciation: "[gyeong-yeong]", chinese: "经营/管理", korean_example: "경영학을 전공했어요.", chinese_example: "我主修经营学。" },
             { korean: "마케팅", pronunciation: "[ma-ke-ting]", chinese: "市场营销", korean_example: "새로운 마케팅 전략이 필요해요.", chinese_example: "我们需要新的市场营销策略。" },
@@ -1255,8 +1393,28 @@
             { korean: "수익", pronunciation: "[su-ik]", chinese: "收益/利润", korean_example: "회사의 수익이 증가했어요.", chinese_example: "公司的收益增加了。" },
             { korean: "비용", pronunciation: "[bi-yong]", chinese: "费用/成本", korean_example: "불필요한 비용을 줄여야 해요.", chinese_example: "我们需要削减不必要的成本。" },
             { korean: "시장", pronunciation: "[si-jang]", chinese: "市场", korean_example: "한국 시장을 분석하고 있어요.", chinese_example: "我正在分析韩国市场。" },
-            { korean: "전략", pronunciation: "[jeon-llyak]", chinese: "战略", korean_example: "长期적인战略を 세워야 해요.", chinese_example: "我们需要制定长期战略。" },
-            { korean: "고객", pronunciation: "[go-gaek]", chinese: "顾客/客户", korean_example: "고객 만족이 최우선이에요.", chinese_example: "顾客满意是我们的首要任务。" }
+            { korean: "전략", pronunciation: "[jeon-llyak]", chinese: "战略", korean_example: "장기적인 전략을 세워야 해요.", chinese_example: "我们需要制定长期战略。" },
+            { korean: "고객", pronunciation: "[go-gaek]", chinese: "顾客/客户", korean_example: "고객 만족이 최우선이에요.", chinese_example: "顾客满意是我们的首要任务。" },
+            { korean: "회사", pronunciation: "[hoe-sa]", chinese: "公司", korean_example: "새로운 회사에 취직했어요.", chinese_example: "我在新公司找到了工作。" },
+            { korean: "직원", pronunciation: "[jik-won]", chinese: "员工", korean_example: "우리 회사는 직원이 많아요.", chinese_example: "我们公司有很多员工。" },
+            { korean: "업무", pronunciation: "[eop-mu]", chinese: "业务/工作", korean_example: "오늘 업무가 많아요.", chinese_example: "今天有很多工作。" },
+            { korean: "회의", pronunciation: "[hoe-ui]", chinese: "会议", korean_example: "오전에 중요한 회의가 있어요.", chinese_example: "上午有一个重要的会议。" },
+            { korean: "보고서", pronunciation: "[bo-go-seo]", chinese: "报告", korean_example: "보고서를 제출해야 해요.", chinese_example: "我需要提交报告。" },
+            { korean: "계약", pronunciation: "[gye-yak]", chinese: "合约/契约", korean_example: "새로운 계약을 체결했어요.", chinese_example: "我签订了新的合约。" },
+            { korean: "협상", pronunciation: "[hyeop-sang]", chinese: "谈判", korean_example: "거래를 위해 협상 중이에요.", chinese_example: "我正在为交易进行谈判。" },
+            { korean: "성과", pronunciation: "[seong-gwa]", chinese: "成果/绩效", korean_example: "좋은 성과를 냈어요.", chinese_example: "我取得了好的绩效。" },
+            { korean: "목표", pronunciation: "[mok-pyo]", chinese: "目标", korean_example: "올해의 목표를 세웠어요.", chinese_example: "我设定了今年的目标。" },
+            { korean: "성장", pronunciation: "[seong-jang]", chinese: "成长", korean_example: "회사가 빠르게 성장하고 있어요.", chinese_example: "公司正在快速成长。" },
+            { korean: "위기", pronunciation: "[wi-gi]", chinese: "危机", korean_example: "경제가 위기에 처했어요.", chinese_example: "经济陷入了危机。" },
+            { korean: "기회", pronunciation: "[gi-hoe]", chinese: "机会", korean_example: "이번이 좋은 기회에요.", chinese_example: "这次是个好机会。" },
+            { korean: "경쟁", pronunciation: "[gyeong-jaeng]", chinese: "竞争", korean_example: "시장에서 경쟁이 치열해요.", chinese_example: "市场竞争激烈。" },
+            { korean: "협력", pronunciation: "[hyeop-nyeok]", chinese: "合作", korean_example: "다른 회사와 협력하고 있어요.", chinese_example: "我正在与其他公司合作。" },
+            { korean: "제안", pronunciation: "[je-an]", chinese: "提案", korean_example: "새로운 사업 제안을 했어요.", chinese_example: "我提出了新的商业提案。" },
+            { korean: "승인", pronunciation: "[seung-in]", chinese: "批准/核准", korean_example: "제안서가 승인됐어요.", chinese_example: "提案被批准了。" },
+            { korean: "실패", pronunciation: "[sil-pae]", chinese: "失败", korean_example: "실패를 통해 배웠어요.", chinese_example: "我从失败中学习了。" },
+            { korean: "성공", pronunciation: "[seong-gong]", chinese: "成功", korean_example: "프로젝트가 성공적으로 끝났어요.", chinese_example: "项目成功结束了。" },
+            { korean: "능력", pronunciation: "[neung-nyeok]", chinese: "能力", korean_example: "그는 업무 능력이 뛰어나요.", chinese_example: "他工作能力很出色。" },
+            { korean: "기술", pronunciation: "[gi-sul]", chinese: "技术", korean_example: "첨단 기술을 개발하고 있어요.", chinese_example: "我正在开发尖端技术。" }
         ]
     };
 
@@ -1382,50 +1540,47 @@
         }
     }
 
-    // 修改 checkDailyStudyGoal 函数以显示烟花和弹窗
     function checkDailyStudyGoal() {
         const todayStr = getTodayDateString();
-        // 重新计算今日学习新词数量
         const wordsLearnedToday = Object.values(learnedWordsData).filter(word => {
             const firstLearnedDate = new Date(word.firstLearned).toISOString().slice(0, 10);
-            return firstLearnedDate === todayStr && word.reviewCount === 1; // 第一次学习才算新词
+            return firstLearnedDate === todayStr && word.reviewCount === 1;
         }).length;
 
         if (wordsLearnedToday >= dailyNewWordsLimit && !studyStreak[todayStr]) {
             studyStreak[todayStr] = true;
-            saveLearnedWords(); // 保存打卡记录
-            renderCalendar(); // 更新日历
-            showFireworks(); // 显示烟花
-            showCongratulationsModal(); // 显示恭喜弹窗
+            saveLearnedWords();
+            renderCalendar();
+            showFireworks();
+            showCongratulationsModal();
             console.log("今日学习目标已完成，打卡成功！");
         }
     }
 
     function showFireworks() {
-        fireworksContainer.innerHTML = ''; // 清空之前的烟花
-        const numberOfFireworks = 20; // 烟花数量
+        fireworksContainer.innerHTML = '';
+        const numberOfFireworks = 20;
         for (let i = 0; i < numberOfFireworks; i++) {
             const firework = document.createElement('div');
             firework.classList.add('firework');
             const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight * 0.6; // 烟花出现d的上半部分
+            const y = Math.random() * window.innerHeight * 0.6;
             firework.style.left = `${x}px`;
             firework.style.top = `${y}px`;
-            const color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
             firework.style.backgroundColor = color;
-            const animationDelay = Math.random() * 0.5; // 随机延迟
+            const animationDelay = Math.random() * 0.5;
             firework.style.animationDelay = `${animationDelay}s`;
             fireworksContainer.appendChild(firework);
         }
-        // 烟花动画结束后清空容器
         setTimeout(() => {
             fireworksContainer.innerHTML = '';
-        }, 2000); // 烟花显示 2 秒后消失
+        }, 2000);
     }
 
     function showCongratulationsModal() {
         congratulationsModal.style.display = 'block';
-        congratulationsModal.style.opacity = '1'; // 确保显示时透明度为 1
+        congratulationsModal.style.opacity = '1';
     }
 
     function hideCongratulationsModal() {
@@ -1482,21 +1637,19 @@
         }
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
-        // Ensure contents is always an array of objects with role and parts
         let formattedContents;
         if (Array.isArray(contents)) {
-            // If it's already an array, ensure each item has role/parts structure
             formattedContents = contents.map(item => {
                 if (item.role && item.parts) {
                     return item;
-                } else if (item.text || item.inline_data) { // Assume it's a part and wrap it
+                } else if (item.text || item.inline_data) {
                     return { role: "user", parts: [item] };
                 }
-                return { role: "user", parts: [{ text: JSON.stringify(item) }] }; // Fallback for unexpected formats
+                return { role: "user", parts: [{ text: JSON.stringify(item) }] };
             });
-        } else if (contents.text || contents.inline_data) { // If it's a single part
+        } else if (contents.text || contents.inline_data) {
             formattedContents = [{ role: "user", parts: [contents] }];
-        } else { // Fallback for unexpected single object formats
+        } else {
             formattedContents = [{ role: "user", parts: [{ text: JSON.stringify(contents) }] }];
         }
 
@@ -1606,21 +1759,6 @@
         }
     }
 
-    function handleVideoUpload(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const fileURL = URL.createObjectURL(file);
-            videoPlayerEl.src = fileURL;
-            videoPlayerEl.style.display = 'block';
-            videoPlayerEl.load();
-            videoFileNameDisplayEl.textContent = `目前文件: ${file.name}`;
-        } else {
-            videoPlayerEl.src = '';
-            videoPlayerEl.style.display = 'none';
-            videoFileNameDisplayEl.textContent = '未选择文件';
-        }
-    }
-
     async function generateAIClozeTest() {
         clozeQuestionTextEl.textContent = ""; clozeHintTextEl.textContent = ""; clozeAnswerInputEl.value = "";
         clozeFeedbackEl.textContent = ""; clozeCorrectSentenceEl.textContent = ""; currentClozeWordData = null;
@@ -1649,26 +1787,6 @@
         else { clozeFeedbackEl.textContent = `回答错误。正确答案是: ${currentClozeWordData.korean}`; clozeFeedbackEl.style.color = "var(--danger-color)"; }
         if(currentClozeWordData.korean_example) clozeCorrectSentenceEl.textContent = `正确句子: ${currentClozeWordData.korean_example.split('\n')[0]}`;
         clozeCorrectSentenceEl.style.display = 'block';
-    }
-
-    function populateStoryWordSelect() {
-        storyWordSelectEl.innerHTML = ""; const learnedKeys = Object.keys(learnedWordsData);
-        if (learnedKeys.length < 2) { const opt = document.createElement('option'); opt.textContent = "请至少学习2个单词"; opt.disabled = true; storyWordSelectEl.appendChild(opt); return; }
-        learnedKeys.forEach(key => { const opt = document.createElement('option'); opt.value = key; opt.textContent = `${key} (${learnedWordsData[key].chinese})`; storyWordSelectEl.appendChild(opt); });
-    }
-    async function generateAIStory() {
-        const selectedOptions = Array.from(storyWordSelectEl.selectedOptions).map(opt => opt.value);
-        if (selectedOptions.length < 2 || selectedOptions.length > 5) { alert("请选择 2 到 5 个单词来创作故事。"); return; }
-        storyKoTextEl.textContent = ""; storyZhTextEl.textContent = "";
-        aiGeneratedStoryKoBox.classList.add('loading'); aiGeneratedStoryKoBox.style.display = 'block'; aiGeneratedStoryZhBox.style.display = 'none';
-        const prompt = `请用以下韩语单词创作一个非常简短 (2-4句话)、简单且连贯的小故事，适合韩语初学者阅读。单词列表: ${selectedOptions.join("、")}。\n请在故事后另起一行，用 "---中文翻译---" 分隔后，提供该韩语故事的简体中文翻译。`;
-        const storyResult = await callGeminiAPI([{text: prompt}], "story_generation", aiGeneratedStoryKoBox);
-        if (storyResult && !aiGeneratedStoryKoBox.classList.contains('error')) {
-            const parts = storyResult.split("---中文翻译---");
-            storyKoTextEl.textContent = parts[0] ? parts[0].trim() : "AI未能生成韩语故事。";
-            if (parts[1]) { storyZhTextEl.textContent = parts[1].trim(); aiGeneratedStoryZhBox.style.display = 'block'; }
-            else { storyZhTextEl.textContent = "AI未能生成中文翻译。"; aiGeneratedStoryZhBox.style.display = 'block'; }
-        } else if (!storyResult && !aiGeneratedStoryKoBox.classList.contains('error')) { storyKoTextEl.textContent = "AI故事创作失败。"; }
     }
 
     async function generateAIScenario() {
@@ -1735,7 +1853,6 @@
         aiScenarioFeedbackEl.style.display = 'block';
         aiScenarioFeedbackEl.classList.remove('error', 'success');
 
-        // Create the full prompt for the model to continue the conversation
         const fullPromptContents = [
             { role: "user", parts: [{ text: "你是一个韩语学习助手。我们正在进行情景对话练习。你的任务是评估用户的韩语回应，然后以你的角色继续对话。请严格遵守以下格式，先是中文反馈，然后用 '---反馈---' 分隔，最后是AI的韩语回应。如果对话可以自然结束，可以说一句韩语结束语（例如：고맙습니다. 다음에 또 만나요.）。如果用户表达不清或任务未完成，可以尝试引导或提问。" }] },
             ...currentAIScenarioContext
@@ -1760,9 +1877,8 @@
         } else {
             aiScenarioFeedbackEl.textContent = "AI回应生成失败。";
             aiScenarioFeedbackEl.classList.add('error');
-            // Revert the last user utterance if AI failed to respond
             currentAIScenarioContext.pop();
-            updateScenarioDialogueHistory(); // Re-render to reflect the pop
+            updateScenarioDialogueHistory();
         }
     }
     function updateScenarioDialogueHistory() {
@@ -1935,6 +2051,158 @@
         }
     }
 
+    async function convertCurrency() {
+        const amount = parseFloat(exchangeInputAmountEl.value);
+        if (isNaN(amount) || amount <= 0) {
+            exchangeRateOutputEl.textContent = "请输入有效的金额。";
+            exchangeRateOutputEl.classList.remove('loading', 'error');
+            return;
+        }
+
+        const fromCurrency = exchangeFromCurrencyEl.value;
+        const toCurrency = exchangeToCurrencyEl.value;
+
+        if (fromCurrency === toCurrency) {
+            exchangeRateOutputEl.textContent = `无需换算，${amount} ${fromCurrency} 就是 ${amount} ${toCurrency}。`;
+            exchangeRateOutputEl.classList.remove('loading', 'error');
+            return;
+        }
+
+        exchangeRateOutputEl.textContent = "AI 正在获取汇率并换算...";
+        exchangeRateOutputEl.classList.add('loading');
+        exchangeRateOutputEl.classList.remove('error');
+
+        const prompt = `请将 ${amount} ${fromCurrency} 换算成 ${toCurrency}。
+        假设当前汇率：
+        1 人民币 (CNY) ≈ 185 韩币 (KRW)
+        1 韩币 (KRW) ≈ 0.0054 人民币 (CNY)
+
+        请直接给出换算结果，格式为 "XX [目标货币单位]"。不要包含任何额外文字或解释。`;
+
+        const result = await callGeminiAPI([{text: prompt}], "currency_conversion", exchangeRateOutputEl);
+
+        if (result && !exchangeRateOutputEl.classList.contains('error')) {
+            exchangeRateOutputEl.textContent = `换算结果：${result}`;
+        } else if (!result && !exchangeRateOutputEl.classList.contains('error')) {
+            exchangeRateOutputEl.textContent = "汇率换算失败，请稍后再试。";
+        }
+    }
+
+    async function fetchKoreanStory() {
+        koreanStoryOutputEl.textContent = "AI 正在为您生成韩国小故事...";
+        koreanStoryOutputEl.classList.add('loading');
+        koreanStoryOutputEl.classList.remove('error');
+
+        const prompt = `请生成一个关于韩国文化或韩国历史的简短双语小故事。
+        故事应包含：
+        1. 故事标题（韩语）
+        2. 故事标题（中文翻译）
+        3. 故事内容（韩语，约3-5句话）
+        4. 故事内容（中文翻译，约3-5句话）
+
+        请确保故事内容有趣、有教育意义，且语言简单易懂，适合韩语学习者。
+        格式如下：
+        제목 (韩): [韩语标题]
+        标题 (中): [中文标题]
+        내용 (韩): [韩语内容]
+        内容 (中): [中文内容]
+        `;
+
+        const storyText = await callGeminiAPI([{text: prompt}], "korean_story", koreanStoryOutputEl);
+
+        if (storyText && !koreanStoryOutputEl.classList.contains('error')) {
+            const lines = storyText.split('\n').filter(line => line.trim() !== '');
+            let htmlContent = '';
+            let currentCategory = '';
+            lines.forEach(line => {
+                if (line.startsWith('제목 (韩):')) {
+                    htmlContent += `<h4>${line.replace('제목 (韩):', '').trim()}</h4>`;
+                    currentCategory = 'korean_title';
+                } else if (line.startsWith('标题 (中):')) {
+                    htmlContent += `<p class="chinese-news">${line.replace('标题 (中):', '').trim()}</p>`;
+                    currentCategory = 'chinese_title';
+                } else if (line.startsWith('내용 (韩):')) {
+                    htmlContent += `<p class="korean-news">${line.replace('내용 (韩):', '').trim()}</p>`;
+                    currentCategory = 'korean_content';
+                } else if (line.startsWith('内容 (中):')) {
+                    htmlContent += `<p class="chinese-news">${line.replace('内容 (中):', '').trim()}</p>`;
+                    currentCategory = 'chinese_content';
+                } else if (currentCategory) {
+                    if (currentCategory === 'korean_content') {
+                        htmlContent += `<p class="korean-news">${line.trim()}</p>`;
+                    } else if (currentCategory === 'chinese_content') {
+                        htmlContent += `<p class="chinese-news">${line.trim()}</p>`;
+                    }
+                }
+            });
+            koreanStoryOutputEl.innerHTML = htmlContent;
+        } else if (!storyText && !koreanStoryOutputEl.classList.contains('error')) {
+             koreanStoryOutputEl.textContent = "未能获取小故事，请稍后再试。";
+        }
+    }
+
+    async function recognizeTrashImage() {
+        if (!uploadedTrashImageBase64 || !uploadedTrashImageMimeType) {
+            alert("请先选择一张图片。");
+            return;
+        }
+
+        trashImageRecognitionOutputEl.textContent = "AI 正在识别图片中的垃圾...";
+        trashImageRecognitionOutputEl.classList.add('loading');
+        trashImageRecognitionOutputEl.classList.remove('error');
+        trashImageRecognitionOutputEl.style.display = 'block';
+
+        const promptParts = [
+            { inline_data: { mime_type: uploadedTrashImageMimeType, data: uploadedTrashImageBase64 } },
+            { text: "请识别图片中的物品，并根据韩国的垃圾分类标准，告诉我它属于哪一类垃圾（例如：一般垃圾、可回收垃圾、食物垃圾、大型废弃物等），并简要说明原因。请用韩语和中文双语输出。韩语在前，中文在后。格式：\n分类 (한글):\n原因 (한글):\n\n分类 (中文):\n原因 (中文):" }
+        ];
+
+        const result = await callGeminiAPI([{role: "user", parts: promptParts}], "trash_image_recognition", trashImageRecognitionOutputEl);
+
+        if (result && !trashImageRecognitionOutputEl.classList.contains('error')) {
+            trashImageRecognitionOutputEl.innerHTML = result.replace(/\n/g, '<br>');
+        } else if (!result && !trashImageRecognitionOutputEl.classList.contains('error')) {
+            trashImageRecognitionOutputEl.textContent = "图片垃圾分类识别失败。";
+        }
+    }
+
+    async function classifyTrashText() {
+        const trashName = trashTextInputEl.value.trim();
+        if (!trashName) {
+            trashTextClassificationOutputEl.textContent = "请输入垃圾名称。";
+            trashTextClassificationOutputEl.classList.remove('loading', 'error');
+            return;
+        }
+
+        trashTextClassificationOutputEl.textContent = "AI 正在分类垃圾...";
+        trashTextClassificationOutputEl.classList.add('loading');
+        trashTextClassificationOutputEl.classList.remove('error');
+        trashTextClassificationOutputEl.style.display = 'block';
+
+        const prompt = `请根据韩国的垃圾分类标准，将物品 "${trashName}" 进行分类。请用韩语和中文双语输出：
+        1. 物品名称（韩语和中文）
+        2. 分类类别（韩语和中文，例如：一般垃圾、可回收垃圾、食物垃圾、大型废弃物等）
+        3. 简要的分类依据（韩语和中文）
+        
+        韩语在前，中文在后。格式：
+        物品명 (한글):
+        분류 (한글):
+        근거 (한글):
+        
+        物品名称 (中文):
+        分类 (中文):
+        依据 (中文):`;
+
+        const result = await callGeminiAPI([{text: prompt}], "trash_text_classification", trashTextClassificationOutputEl);
+
+        if (result && !trashTextClassificationOutputEl.classList.contains('error')) {
+            trashTextClassificationOutputEl.innerHTML = result.replace(/\n/g, '<br>');
+        } else if (!result && !trashTextClassificationOutputEl.classList.contains('error')) {
+            trashTextClassificationOutputEl.textContent = "文字垃圾分类识别失败。";
+        }
+    }
+
+
     function setActivePage(pageId, title) {
         contentPages.forEach(page => page.classList.toggle('active', page.id === pageId));
         tabItems.forEach(tab => tab.classList.toggle('active', tab.dataset.page === pageId));
@@ -1959,13 +2227,14 @@
             renderReviewList('all');
             updateActiveFilterButton('all');
         } else if (pageId === 'page-memorize') {
-            loadWordForMemorizePage(true); // Always force reload current word when navigating to memorize page
+            loadWordForMemorizePage(true);
         } else if (pageId === 'page-study-goals') {
             renderCalendar();
         }
         if (pageId !== 'page-about') {
             pageAboutEl.classList.remove('active');
         }
+        document.getElementById('korean-life-helper-menu').classList.remove('active');
     }
 
     function showAIFunctionSubFeature(featureId, title) {
@@ -1979,8 +2248,6 @@
 
         if (featureId === 'feature-cloze') {
             generateAIClozeTest();
-        } else if (featureId === 'feature-story') {
-            populateStoryWordSelect();
         } else if (featureId === 'feature-scenario') {
             aiScenarioDescriptionEl.textContent = "点击下方按钮生成对话情境。";
             aiScenarioDialogueHistoryEl.innerHTML = "";
@@ -2002,11 +2269,31 @@
             imageRecognizedKoTextEl.parentElement.style.display = 'none';
             imageRecognizedZhTextEl.parentElement.style.display = 'none';
             imageUploadInputRecEl.value = '';
-        } else if (featureId === 'page-local-video') {
-            videoPlayerEl.src = '';
-            videoPlayerEl.style.display = 'none';
-            videoFileNameDisplayEl.textContent = '未选择文件';
-            videoUploadInputEl.value = '';
+        }
+        else if (featureId === 'page-exchange-rate') {
+            exchangeInputAmountEl.value = '100';
+            exchangeRateOutputEl.textContent = '换算结果将显示在此。';
+            exchangeRateOutputEl.classList.remove('loading', 'error');
+        } else if (featureId === 'page-korean-story') {
+            koreanStoryOutputEl.textContent = '点击上方按钮生成一个关于韩国文化或历史的双语小故事。';
+            koreanStoryOutputEl.classList.remove('loading', 'error');
+        } else if (featureId === 'page-trash-classification') {
+            trashImagePreviewEl.src = '';
+            trashImagePreviewEl.style.display = 'none';
+            recognizeTrashImageBtnEl.disabled = true;
+            trashImageRecognitionOutputEl.style.display = 'none';
+            trashImageRecognitionOutputEl.classList.remove('loading', 'error');
+            trashImageUploadEl.value = '';
+
+            trashTextInputEl.value = '';
+            trashTextClassificationOutputEl.textContent = '分类结果将显示在此。';
+            trashTextClassificationOutputEl.classList.remove('loading', 'error');
+            trashTextClassificationOutputEl.style.display = 'block';
+        }
+        else if (featureId === 'korean-life-helper-menu') {
+            document.getElementById('korean-life-helper-menu').classList.add('active');
+            pageAiFunctionsEl.classList.remove('sub-feature-active');
+            appHeaderTitleEl.textContent = "韩国生活小助手";
         }
     }
 
@@ -2014,8 +2301,18 @@
         pageAiFunctionsEl.classList.add('menu-active');
         pageAiFunctionsEl.classList.remove('sub-feature-active');
         aiSubFeatureSections.forEach(section => section.classList.remove('active'));
+        document.getElementById('korean-life-helper-menu').classList.remove('active');
         appHeaderTitleEl.textContent = "AI 功能";
     }
+
+    function showKoreanLifeHelperMenu() {
+        pageAiFunctionsEl.classList.remove('menu-active');
+        pageAiFunctionsEl.classList.add('sub-feature-active');
+        aiSubFeatureSections.forEach(section => section.classList.remove('active'));
+        document.getElementById('korean-life-helper-menu').classList.add('active');
+        appHeaderTitleEl.textContent = "韩国生活小助手";
+    }
+
 
     function showSettingsMainMenu() {
         document.getElementById('page-settings').classList.add('active');
@@ -2041,16 +2338,14 @@
         loadLearnedWords();
 
         currentWordIndex = 0;
-        loadWordForMemorizePage(true); // Force reload to start from beginning of new list
+        loadWordForMemorizePage(true);
         if (isCardFlipped) flipCard(false);
 
         if (document.getElementById('page-review-plan').classList.contains('active')) {
             renderReviewList(currentReviewFilter);
         }
-        alert(`已切换到“${wordListSelectEl.options[wordListSelectEl.selectedIndex].text}”字库！`);
     }
 
-    // Modified loadWord function
     function loadWord(indexToLoad = currentWordIndex, shouldSpeak = false) {
         console.log("loadWord called with indexToLoad:", indexToLoad);
 
@@ -2061,14 +2356,12 @@
             exampleSentenceEl.style.display = 'none';
             progressBarEl.style.width = '0%';
             currentWordIndexEl.textContent = '0';
-            totalWordsEl.textContent = '0'; // Ensure total is 0 if list is empty
+            totalWordsEl.textContent = '0';
             return;
         }
 
-        // Ensure index is within bounds
         if (indexToLoad < 0 || indexToLoad >= wordList.length) {
             console.warn("Attempted to load word at invalid index:", indexToLoad);
-            // Fallback to 0 if out of bounds, or handle gracefully (e.g., stay on current)
             indexToLoad = 0;
         }
 
@@ -2085,7 +2378,7 @@
             return;
         }
 
-        currentWordIndex = indexToLoad; // Update global currentWordIndex
+        currentWordIndex = indexToLoad;
         console.log("Loading word:", wordToLoad.korean, "at index:", currentWordIndex);
 
         koreanWordEl.textContent = wordToLoad.korean;
@@ -2099,12 +2392,10 @@
             exampleSentenceEl.style.display = 'none';
         }
 
-        // Always flip to front when loading new word by default
         if (isCardFlipped) {
             flipCard(false);
         }
 
-        // Hide AI expansion areas
         aiHelperBoxEl.style.display = 'none'; aiHelperContentEl.textContent = "点击下方 \"AI提示\" 获取。";
         aiSentenceGeneratorBoxEl.style.display = 'none'; aiGeneratedSentencesEl.innerHTML = "";
         aiUsageNotesBoxEl.style.display = 'none'; aiUsageNotesContentEl.textContent = "";
@@ -2123,41 +2414,113 @@
 
     function speakKoreanWord(event) {
         if (event) event.stopPropagation();
-        if (!synth || !wordList[currentWordIndex]) {
-             console.log("Speech synthesis unavailable or no current word.");
-             return;
+
+        if (!wordList[currentWordIndex]) {
+            console.warn("没有当前单词可以播放。");
+            return;
         }
-        if (synth.speaking) synth.cancel();
-        const utterThis = new SpeechSynthesisUtterance(wordList[currentWordIndex].korean);
-        let koreanVoice = synth.getVoices().find(v => v.lang === 'ko-KR' || v.lang.startsWith('ko'));
-        if (koreanVoice) {
-            utterThis.voice = koreanVoice;
-        } else {
-            utterThis.lang = 'ko-KR'; // Fallback to language code if no specific voice found
+
+        const koreanWord = wordList[currentWordIndex].korean;
+        console.log("尝试播放单词:", koreanWord);
+
+        if (synth && synth.speaking) {
+            synth.cancel();
+            console.log("取消了先前的浏览器 TTS 语音。");
         }
-        utterThis.rate = 0.9;
-        utterThis.pitch = 1;
-        synth.speak(utterThis);
-        console.log("Speaking word:", wordList[currentWordIndex].korean);
+
+        const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(koreanWord)}&tl=ko&client=tw-ob`;
+
+        const audio = new Audio(googleTtsUrl);
+        audio.volume = 1.0;
+
+        let playAttempted = false;
+
+        audio.oncanplaythrough = () => {
+            if (!playAttempted) {
+                audio.play().then(() => {
+                    console.log("通过 Google TTS 成功播放:", koreanWord);
+                    playAttempted = true;
+                }).catch(e => {
+                    console.warn("Google TTS 播放失败 (可能被阻止或用户未交互)，尝试回退到浏览器自带 TTS:", e);
+                    playWithBrowserTTS(koreanWord);
+                    playAttempted = true;
+                });
+            }
+        };
+
+        audio.onerror = (e) => {
+            console.error("Google TTS 音频加载错误:", e);
+            if (!playAttempted) {
+                console.log("Google TTS 加载失败，回退到浏览器自带 TTS。");
+                playWithBrowserTTS(koreanWord);
+                playAttempted = true;
+            }
+        };
+
+        setTimeout(() => {
+            if (!playAttempted) {
+                console.warn("Google TTS 响应超时，回退到浏览器自带 TTS。");
+                playWithBrowserTTS(koreanWord);
+                playAttempted = true;
+            }
+        }, 1500);
+
+        audio.load();
+
+        function playWithBrowserTTS(word) {
+            if (!synth) {
+                console.warn("SpeechSynthesis 在此设备上不可用，无法回退。");
+                return;
+            }
+            if (synth.speaking) {
+                synth.cancel();
+                console.log("取消了先前的浏览器 TTS 语音。");
+            }
+
+            const utterThis = new SpeechSynthesisUtterance(word);
+            let koreanVoice = synth.getVoices().find(v => v.lang === 'ko-KR' || v.lang.startsWith('ko'));
+
+            if (koreanVoice) {
+                utterThis.voice = koreanVoice;
+                console.log("找到韩语语音:", koreanVoice.name);
+            } else {
+                utterThis.lang = 'ko-KR';
+                console.warn("未找到特定韩语语音，回退到 lang='ko-KR'。可用语音:", synth.getVoices().map(v => v.lang + ' (' + v.name + ')').join(', '));
+            }
+
+            utterThis.rate = 0.9;
+            utterThis.pitch = 1;
+
+            utterThis.onend = () => {
+                console.log("浏览器 TTS 播放完成:", word);
+            };
+            utterThis.onerror = (event) => {
+                console.error("浏览器 TTS 错误:", event.error);
+            };
+
+            try {
+                synth.speak(utterThis);
+                console.log("通过浏览器 TTS 启动播放:", word);
+            } catch (e) {
+                console.error("调用 synth.speak() 错误:", e);
+            }
+        }
     }
 
-    // Modified nextWord function
     function nextWord() {
         console.log("Next word clicked. Current index:", currentWordIndex);
         if (!wordList || wordList.length === 0) return;
         currentWordIndex = (currentWordIndex + 1) % wordList.length;
-        loadWord(currentWordIndex, true); // Pass true to shouldSpeak
+        loadWord(currentWordIndex, true);
     }
 
-    // Modified prevWord function
     function prevWord() {
         console.log("Prev word clicked. Current index BEFORE update:", currentWordIndex);
         if (!wordList || wordList.length === 0) return;
         currentWordIndex = (currentWordIndex - 1 + wordList.length) % wordList.length;
         console.log("Prev word clicked. New index:", currentWordIndex);
-        loadWord(currentWordIndex, true); // Pass true to shouldSpeak
+        loadWord(currentWordIndex, true);
     }
-
 
     function calculateNextReviewTimestamp(reviewCount, lastSeenTimestamp) {
         const now = Date.now();
@@ -2196,7 +2559,6 @@
                 lastSeen: currentTimestamp,
                 reviewCount: 1,
             };
-            // dailyNewWordsLearnedToday++; // This increment is handled by checkDailyStudyGoal to be more precise.
         } else {
             wordEntry.reviewCount = (wordEntry.reviewCount || 0) + 1;
             wordEntry.lastSeen = currentTimestamp;
@@ -2207,8 +2569,8 @@
 
         console.log(`已标记: ${wordKey}, 次数: ${wordEntry.reviewCount}, 下次: ${new Date(wordEntry.nextReviewDue).toLocaleDateString()}, 今日新词: ${dailyNewWordsLearnedToday}/${dailyNewWordsLimit}`);
 
-        checkDailyStudyGoal(); // 在标记为已认识后检查学习目标
-        loadWordForMemorizePage(true); // Force reload and also trigger speak logic
+        checkDailyStudyGoal();
+        loadWordForMemorizePage(true);
     }
 
     function updateProgress() {
@@ -2232,8 +2594,8 @@
         const wordIndexInList = wordList.findIndex(w => w.korean === wordKey);
         if (wordIndexInList !== -1) {
             setActivePage('page-memorize', '背单词');
-            currentWordIndex = wordIndexInList; // Update currentWordIndex for the memorize page
-            loadWord(currentWordIndex, true); // Use the general loadWord with the specific index and speak
+            currentWordIndex = wordIndexInList;
+            loadWord(currentWordIndex, true);
         } else {
             alert(`单词 "${wordKey}" 在目前字库中未找到。`);
         }
@@ -2309,7 +2671,7 @@
     }
 
     function initializeApp() {
-        currentUsernameDisplayEl.textContent = localStorage.getItem('lastLoggedInUser') || "学习者";
+        currentUsernameDisplayEl.textContent = localStorage.getItem('lastLoggedInUser') || "汉阳大计算机学部某学生";
 
         loadLearnedWords();
         applySavedSettings();
@@ -2322,7 +2684,7 @@
                 dailyNewWordsLimit = value;
                 localStorage.setItem('dailyNewWordsLimit', dailyNewWordsLimit);
                 e.target.value = dailyNewWordsLimit;
-                checkDailyStudyGoal(); // 更新目标后检查是否已达成
+                checkDailyStudyGoal();
             });
         }
 
@@ -2336,10 +2698,12 @@
                 document.getElementById('page-ai-dictionary'),
                 document.getElementById('page-image-recognition'),
                 document.getElementById('feature-cloze'),
-                document.getElementById('feature-story'),
                 document.getElementById('feature-scenario'),
                 document.getElementById('feature-essay-correction'),
-                document.getElementById('feature-mc-questions')
+                document.getElementById('feature-mc-questions'),
+                document.getElementById('page-exchange-rate'),
+                document.getElementById('page-korean-story'),
+                document.getElementById('page-trash-classification')
             ];
 
             aiSections.forEach(section => {
@@ -2356,7 +2720,7 @@
             });
         }
 
-        loadWordForMemorizePage(true); // Initial load with speak enabled
+        loadWordForMemorizePage(true);
 
         if(wordCardEl) {
             wordCardEl.addEventListener('click', (event) => {
@@ -2409,15 +2773,43 @@
             });
         }
         if(recognizeImageKoreanBtnEl) { recognizeImageKoreanBtnEl.addEventListener('click', generateImageRecognition); }
-        if (videoUploadInputEl) { videoUploadInputEl.addEventListener('change', handleVideoUpload); }
+
         if(generateClozeBtnEl){ generateClozeBtnEl.addEventListener('click', generateAIClozeTest); }
         if(submitClozeBtnEl){ submitClozeBtnEl.addEventListener('click', submitClozeAnswer); }
-        if(generateStoryBtnEl){ generateStoryBtnEl.addEventListener('click', generateAIStory); }
+
         if(generateScenarioBtnEl){ generateScenarioBtnEl.addEventListener('click', generateAIScenario); }
         if(submitScenarioResponseBtnEl){ submitScenarioResponseBtnEl.addEventListener('click', submitScenarioResponse); }
         if(correctEssayBtnEl) { correctEssayBtnEl.addEventListener('click', correctEssay); }
         if(generateMcBtnEl) { generateMcBtnEl.addEventListener('click', generateMultipleChoiceQuestions); }
         if(submitMcAnswersBtnEl) { submitMcAnswersBtnEl.addEventListener('click', submitMultipleChoiceAnswers); }
+
+        if(doExchangeRateBtnEl) { doExchangeRateBtnEl.addEventListener('click', convertCurrency); }
+        if(fetchKoreanStoryBtnEl) { fetchKoreanStoryBtnEl.addEventListener('click', fetchKoreanStory); }
+        if(trashImageUploadEl) {
+            trashImageUploadEl.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 4 * 1024 * 1024) { alert("图片文件过大，请选择小于 4MB 的图片。"); trashImageUploadEl.value = ""; return; }
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        trashImagePreviewEl.src = e.target.result; trashImagePreviewEl.style.display = 'block';
+                        uploadedTrashImageBase64 = e.target.result.split(',')[1]; uploadedTrashImageMimeType = file.type;
+                        recognizeTrashImageBtnEl.disabled = false;
+                        trashImageRecognitionOutputEl.style.display = 'none';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    trashImagePreviewEl.src = '#';
+                    trashImagePreviewEl.style.display = 'none';
+                    recognizeTrashImageBtnEl.disabled = true;
+                }
+            });
+        }
+        if(recognizeTrashImageBtnEl) { recognizeTrashImageBtnEl.addEventListener('click', recognizeTrashImage); }
+        if(classifyTrashTextBtnEl) {
+            classifyTrashTextBtnEl.addEventListener('click', classifyTrashText);
+            trashTextInputEl.addEventListener('keypress', (e) => { if(e.key === 'Enter') classifyTrashText(); });
+        }
 
 
         filterButtonsReview.forEach(button => {
@@ -2429,8 +2821,15 @@
             });
         });
         aiFunctionMenuBtns.forEach(button => {
-            button.addEventListener('click', () => showAIFunctionSubFeature(button.dataset.subFeatureId, button.dataset.title));
+            button.addEventListener('click', () => {
+                if (button.dataset.subFeatureId === "korean-life-helper-menu") {
+                    showKoreanLifeHelperMenu();
+                } else {
+                    showAIFunctionSubFeature(button.dataset.subFeatureId, button.dataset.title);
+                }
+            });
         });
+
 
         if(darkModeToggle) {
             darkModeToggle.addEventListener('change', toggleDarkMode);
@@ -2457,16 +2856,13 @@
         setActivePage('page-memorize', '背单词');
         console.log("韩语学习助手 (AI高级定制版) 已初始化。");
 
-        // 开屏动画逻辑
         setTimeout(() => {
             splashScreen.classList.add('hidden');
-        }, 3000); // 3 秒后隐藏开屏动画
+        }, 2000);
 
-        // 关闭恭喜弹窗按钮
         closeCongratsModalButton.addEventListener('click', hideCongratulationsModal);
     }
 
-    // This function is for "smart" loading based on SRS and daily limits
     function loadWordForMemorizePage(initialLoadOrMarkKnown = false) {
         console.log("loadWordForMemorizePage called. Initial/MarkKnown:", initialLoadOrMarkKnown);
         const now = Date.now();
@@ -2474,7 +2870,7 @@
         const newWordsNotLearned = wordList.filter(word => !learnedWordsData[word.korean]);
 
         let wordToLoad = null;
-        let targetIndex = currentWordIndex; // Default to current index
+        let targetIndex = currentWordIndex;
 
         if (dueWords.length > 0) {
             dueWords.sort((a, b) => a.nextReviewDue - b.nextReviewDue);
@@ -2486,30 +2882,23 @@
             targetIndex = wordList.findIndex(w => w.korean === wordToLoad.korean);
             console.log("Found new word:", wordToLoad.korean);
         } else {
-            // If no due words and no new words to learn, cycle through all words.
-            // When arriving from `markAsKnown` or initial load, we might just want to advance to the next in sequence
             console.log("No due words or new words. Cycling through all words.");
             if (wordList.length > 0) {
                  if (initialLoadOrMarkKnown) {
-                     // If it's an initial load or after marking known, load the *next* word from the current position
-                     // This ensures progression even if no "smart" word is available
                      targetIndex = (currentWordIndex + 1) % wordList.length;
-                     if (targetIndex === currentWordIndex && wordList.length > 1) { // Prevent infinite loop if only one word
-                         // If only one word, or after incrementing we land on the same, no true "next" unique word
-                         // In this specific scenario, just keep current word (or the only one)
+                     if (targetIndex === currentWordIndex && wordList.length > 1) {
                          wordToLoad = wordList[currentWordIndex];
                      } else {
                         wordToLoad = wordList[targetIndex];
                      }
                  } else {
-                    // For other cases, if no specific word identified, stay on current or handle as needed
                     wordToLoad = wordList[currentWordIndex];
                  }
             }
         }
 
         if (wordToLoad) {
-            loadWord(targetIndex, true); // Use the general loadWord with the specific index and speak
+            loadWord(targetIndex, true);
         } else {
             koreanWordEl.textContent = "暂无单词可学/复习。";
             pronunciationEl.textContent = "";
@@ -2517,7 +2906,7 @@
             exampleSentenceEl.style.display = 'none';
             progressBarEl.style.width = '0%';
             currentWordIndexEl.textContent = '0';
-            totalWordsEl.textContent = wordList.length; // Still show total list count
+            totalWordsEl.textContent = wordList.length;
             console.log("No word to load based on learning logic. Displaying placeholder.");
         }
     }
