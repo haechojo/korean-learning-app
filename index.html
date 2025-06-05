@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>韩语学习助手 </title>
+    <title>한국어 학습 도우미 </title>
     <style>
         :root {
             --wechat-bg-gray: #f0f2f5;
@@ -283,7 +283,7 @@
         #feature-essay-correction #essay-input { min-height: 150px; }
         #feature-essay-correction #essay-feedback-area { margin-top: 15px; padding: 12px; background-color: #f9f9f9; border: 1px solid var(--wechat-border-color); border-radius: 6px; min-height: 80px; color: var(--wechat-text-primary); white-space: pre-wrap; font-size: 15px; line-height: 1.6; }
         body[data-theme="dark"] #feature-essay-correction #essay-feedback-area { background-color: #2b2b2b; border-color: #555;}
-        #feature-essay-correction #essay-feedback-area.loading::before { content: "AI 批改中..."; color: var(--ai-accent-color); }
+        #feature-essay-correction #essay-feedback-area.loading::before { content: "AI 첨삭 중..."; color: var(--ai-accent-color); }
         #feature-essay-correction #essay-feedback-area.error { color: var(--danger-color); }
 
         #feature-mc-questions .mc-category-select {
@@ -795,37 +795,35 @@
 <body>
     <div id="splash-screen">
         <div class="splash-content">
-            <div class="splash-title-zh">AI 韩语学习小助手</div>
+            <div class="splash-title-zh">AI 한국어 학습 도우미</div>
             <div class="splash-title-ko">AI 한국어 학습 도우미</div>
             <div class="splash-design-by">Design by MiniWorld</div>
         </div>
     </div>
 
     <div id="fireworks-container"></div>
-
-    <div id="congratulations-modal">
-        <p>🎉 恭喜你达成今日学习目标，打卡成功，再接再厉！ 🎉</p>
-        <button id="close-congrats-modal">好的</button>
+        <p>🎉 오늘의 학습 목표를 달성했습니다! 계속 힘내세요! 🎉</p>
+        <button id="close-congrats-modal">확인</button>
     </div>
 
     <div class="app-wrapper" id="app-wrapper">
         <header class="wechat-header">
-            <div class="wechat-header-title" id="app-header-title">背单词</div>
+            <div class="wechat-header-title" id="app-header-title">단어 암기</div>
         </header>
 
         <main class="wechat-content">
             <div id="page-memorize" class="content-page active">
-                <div class="status">第 <span id="current-word-index">1</span> 个单词 / 共 <span id="total-words">0</span> 个单词</div>
+                <div class="status"><span id="current-word-index">1</span>번째 단어 / 총 <span id="total-words">0</span>개</div>
                 <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
                 <div class="word-card-container">
                     <div class="word-card" id="word-card">
                         <div class="card-face card-face-front">
                             <div class="korean-word-container">
-                                <div class="korean-word" id="korean-word">载入中...</div>
+                                <div class="korean-word" id="korean-word">불러오는 중...</div>
                                 <button class="pronounce-btn">🔊</button>
                             </div>
                             <div class="pronunciation" id="pronunciation"></div>
-                            <div class="hint-to-flip">点击卡片查看释义或AI扩展</div>
+                            <div class="hint-to-flip">카드를 눌러 뜻 또는 AI 확장을 확인하세요</div>
                         </div>
                         <div class="card-face card-face-back">
                             <div class="translation chinese-translation" id="chinese-translation"></div>
@@ -834,243 +832,243 @@
                                 <div class="chinese-example" id="chinese-example"></div>
                             </div>
                             <div class="ai-word-expansion-area">
-                                <div class="ai-helper-container" id="ai-helper-box"><div class="ai-helper-title">💡 AI 助记/小提示:</div><div class="ai-helper-content" id="ai-helper-content"></div></div>
-                                <div class="ai-sentence-generator-container" id="ai-sentence-generator-box"><div class="ai-sentence-generator-title">✍️ AI 智能例句:</div><div class="ai-generated-sentences" id="ai-generated-sentences"></div></div>
-                                <div class="ai-usage-notes-container" id="ai-usage-notes-box"><div class="ai-usage-notes-title">🧐 AI 用法辨析:</div><div class="ai-usage-notes-content" id="ai-usage-notes-content"></div></div>
+                                <div class="ai-helper-container" id="ai-helper-box"><div class="ai-helper-title">💡 AI 암기 팁:</div><div class="ai-helper-content" id="ai-helper-content"></div></div>
+                                <div class="ai-sentence-generator-container" id="ai-sentence-generator-box"><div class="ai-sentence-generator-title">✍️ AI 예문:</div><div class="ai-generated-sentences" id="ai-generated-sentences"></div></div>
+                                <div class="ai-usage-notes-container" id="ai-usage-notes-box"><div class="ai-usage-notes-title">🧐 AI 용법:</div><div class="ai-usage-notes-content" id="ai-usage-notes-content"></div></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="prev-word-btn">❮ 上一个</button>
-                    <button id="show-translation-btn" onclick="flipCard()">查看/隐藏</button>
-                    <button id="next-word-btn">下一个 ❯</button>
+                    <button id="prev-word-btn">❮ 이전</button>
+                    <button id="show-translation-btn" onclick="flipCard()">보기/숨기기</button>
+                    <button id="next-word-btn">다음 ❯</button>
                 </div>
                 <div class="controls secondary-controls">
-                    <button id="mark-known-btn">✔ 我认识</button>
-                    <button class="ai-btn" id="ai-tip-btn">🤖 AI提示</button>
+                    <button id="mark-known-btn">✔ 알고 있어요</button>
+                    <button class="ai-btn" id="ai-tip-btn">🤖 AI 힌트</button>
                 </div>
                 <div class="controls tertiary-controls">
-                    <button class="ai-btn" id="ai-sentence-btn">✍️ AI造句</button>
-                    <button class="ai-btn" id="ai-usage-btn">🧐 AI辨析</button>
+                    <button class="ai-btn" id="ai-sentence-btn">✍️ AI 예문</button>
+                    <button class="ai-btn" id="ai-usage-btn">🧐 AI 용법</button>
                 </div>
             </div>
 
             <div id="page-review-plan" class="content-page">
-                <div class="review-summary"><p>总学习单词数: <span id="total-learned-count" class="count">0</span></p><p>今日到期复习: <span id="due-today-count" class="count">0</span></p></div>
-                <div class="filter-buttons"><button id="filter-all" class="active">全部学习</button><button id="filter-due">到期复习</button><button id="filter-overdue">逾期复习</button></div>
-                <div id="review-list-container"><p class="no-reviews">暂无复习计划，快去学习新单词吧！</p></div>
+                <div class="review-summary"><p>총 학습 단어 수: <span id="total-learned-count" class="count">0</span></p><p>오늘 복습 예정: <span id="due-today-count" class="count">0</span></p></div>
+                <div class="filter-buttons"><button id="filter-all" class="active">전체 학습</button><button id="filter-due">예정 복습</button><button id="filter-overdue">연체 복습</button></div>
+                <div id="review-list-container"><p class="no-reviews">복습 계획이 없습니다. 새 단어를 공부하세요!</p></div>
             </div>
 
             <div id="page-ai-functions" class="content-page menu-active">
                 <div class="ai-function-menu" id="ai-main-menu">
-                    <div class="ai-function-menu-item" data-sub-feature-id="page-translate" data-title="AI 智能互译">
-                        <span class="icon">🌐</span> AI 智能互译
+                    <div class="ai-function-menu-item" data-sub-feature-id="page-translate" data-title="AI 자동 번역">
+                        <span class="icon">🌐</span> AI 자동 번역
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="page-ai-dictionary" data-title="AI 韩语词典">
-                        <span class="icon">📖</span> AI 韩语词典
+                    <div class="ai-function-menu-item" data-sub-feature-id="page-ai-dictionary" data-title="AI 한국어 사전">
+                        <span class="icon">📖</span> AI 한국어 사전
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="page-image-recognition" data-title="AI 看图识别韩文">
-                        <span class="icon">🔍</span> AI 看图识别韩文
+                    <div class="ai-function-menu-item" data-sub-feature-id="page-image-recognition" data-title="AI 이미지로 한글 인식">
+                        <span class="icon">🔍</span> AI 이미지로 한글 인식
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 完形填空">
-                        <span class="icon">🎯</span> AI 完形填空
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-cloze" data-title="AI 빈칸 채우기">
+                        <span class="icon">🎯</span> AI 빈칸 채우기
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-scenario" data-title="AI 情景对话模拟">
-                        <span class="icon">🗣️</span> AI 情景对话模拟
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-scenario" data-title="AI 상황 대화 시뮬레이션">
+                        <span class="icon">🗣️</span> AI 상황 대화 시뮬레이션
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-essay-correction" data-title="AI 批改作文">
-                        <span class="icon">📝</span> AI 批改作文
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-essay-correction" data-title="AI 작문 교정">
+                        <span class="icon">📝</span> AI 작문 교정
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="feature-mc-questions" data-title="AI 自动生成选择题">
-                        <span class="icon">❓</span> AI 自动生成选择题
+                    <div class="ai-function-menu-item" data-sub-feature-id="feature-mc-questions" data-title="AI 객관식 문제 생성">
+                        <span class="icon">❓</span> AI 객관식 문제 생성
                     </div>
-                    <div class="ai-function-menu-item" data-sub-feature-id="korean-life-helper-menu" data-title="韩国生活小助手">
-                        <span class="icon">🇰🇷</span> 韩国生活小助手
+                    <div class="ai-function-menu-item" data-sub-feature-id="korean-life-helper-menu" data-title="한국 생활 도우미">
+                        <span class="icon">🇰🇷</span> 한국 생활 도우미
                     </div>
                 </div>
 
                 <div id="korean-life-helper-menu" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="ai-function-menu" style="display: flex;">
-                        <div class="ai-function-menu-item" data-sub-feature-id="page-exchange-rate" data-title="汇率换算">
-                            <span class="icon">💱</span> 汇率换算
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-exchange-rate" data-title="환율 계산">
+                            <span class="icon">💱</span> 환율 계산
                         </div>
-                        <div class="ai-function-menu-item" data-sub-feature-id="page-korean-story" data-title="韩中双语小故事">
-                            <span class="icon">📚</span> 韩中双语小故事
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-korean-story" data-title="한중 이중어 짧은 이야기">
+                            <span class="icon">📚</span> 한중 이중어 짧은 이야기
                         </div>
-                        <div class="ai-function-menu-item" data-sub-feature-id="page-trash-classification" data-title="垃圾分类">
-                            <span class="icon">🗑️</span> 垃圾分类
+                        <div class="ai-function-menu-item" data-sub-feature-id="page-trash-classification" data-title="쓰레기 분류">
+                            <span class="icon">🗑️</span> 쓰레기 분류
                         </div>
                     </div>
                 </div>
 
 
                 <div id="page-translate" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">🌐 AI 智能互译</h3>
-                        <div class="api-key-info">智能翻译。</div>
-                        <textarea id="text-to-translate-auto" placeholder="输入韩语或中文进行互译..."></textarea>
-                        <button class="translate-button generic-button" id="do-translate-auto-btn">AI 智能互译</button>
-                        <div class="translation-result-area ai-output-box" id="translation-output-auto">翻译结果将显示在此</div>
+                        <h3 class="section-title">🌐 AI 자동 번역</h3>
+                        <div class="api-key-info">지능형 번역.</div>
+                        <textarea id="text-to-translate-auto" placeholder="한국어 또는 중국어를 입력하세요..."></textarea>
+                        <button class="translate-button generic-button" id="do-translate-auto-btn">AI 자동 번역</button>
+                        <div class="translation-result-area ai-output-box" id="translation-output-auto">번역 결과가 여기에 표시됩니다</div>
                         <div id="ai-translation-analysis-area"></div>
                     </div>
                 </div>
 
                 <div id="page-ai-dictionary" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">📖 AI 韩语词典</h3>
+                        <h3 class="section-title">📖 AI 한국어 사전</h3>
                         <div style="display: flex;">
-                            <input type="text" id="korean-word-input" placeholder="输入要查询的韩语单词...">
-                            <button class="generic-button" id="search-dictionary-btn">查询</button>
+                            <input type="text" id="korean-word-input" placeholder="조회할 한국어 단어 입력...">
+                            <button class="generic-button" id="search-dictionary-btn">조회</button>
                         </div>
-                        <div id="dictionary-output" class="ai-output-box">请在上方输入韩语单词并点击查询。</div>
+                        <div id="dictionary-output" class="ai-output-box">위에 한국어 단어를 입력한 후 조회 버튼을 누르세요.</div>
                     </div>
                 </div>
 
                 <div id="page-image-recognition" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">🔍 AI 看图识别韩文</h3>
-                        <label for="image-upload-rec" id="image-upload-label-rec">选择图片</label>
+                        <h3 class="section-title">🔍 AI 이미지로 한글 인식</h3>
+                        <label for="image-upload-rec" id="image-upload-label-rec">이미지 선택</label>
                         <input type="file" id="image-upload-rec" accept="image/*">
                         <div id="image-preview-container-rec">
-                            <img id="image-preview-rec" src="#" alt="图片预览">
+                            <img id="image-preview-rec" src="#" alt="미리보기">
                         </div>
-                        <button class="ai-action-btn" id="recognize-image-korean-btn" disabled>AI 识别韩文</button>
+                        <button class="ai-action-btn" id="recognize-image-korean-btn" disabled>AI 한글 인식</button>
                         <div id="ai-image-recognition-output-ko" class="ai-output-box recognition-output-section" style="display:none;">
-                            <h5>🇰🇷 识别到的韩文:</h5><span id="image-recognized-ko-text"></span>
+                            <h5>🇰🇷 인식된 한글:</h5><span id="image-recognized-ko-text"></span>
                         </div>
                         <div id="ai-image-recognition-output-zh" class="ai-output-box recognition-output-section" style="display:none;">
-                            <h5>🇨🇳 中文翻译及解释:</h5><span id="image-recognized-zh-text"></span>
+                            <h5>🇨🇳 중국어 번역 및 설명:</h5><span id="image-recognized-zh-text"></span>
                         </div>
                     </div>
                 </div>
 
                 <div id="feature-cloze" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">🎯 AI 完形填空</h3>
+                        <h3 class="section-title">🎯 AI 빈칸 채우기</h3>
                         <div id="cloze-test-area">
-                            <p class="cloze-question" id="cloze-question-text">点击下方按钮生成题目。</p>
+                            <p class="cloze-question" id="cloze-question-text">아래 버튼을 눌러 문제를 생성하세요.</p>
                             <p class="cloze-hint" id="cloze-hint-text"></p>
-                            <input type="text" id="cloze-answer-input" placeholder="输入挖空部分的韩语单词">
-                            <button class="ai-action-btn" id="submit-cloze-btn">提交答案</button>
+                            <input type="text" id="cloze-answer-input" placeholder="빈칸에 들어갈 한국어 단어 입력">
+                            <button class="ai-action-btn" id="submit-cloze-btn">정답 제출</button>
                             <div id="cloze-feedback"></div>
                             <div id="cloze-correct-sentence"></div>
                         </div>
-                        <button class="ai-action-btn" id="generate-cloze-btn" style="margin-top:10px;">获取新填空题</button>
+                        <button class="ai-action-btn" id="generate-cloze-btn" style="margin-top:10px;">새 문제 가져오기</button>
                     </div>
                 </div>
 
                 <div id="feature-scenario" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">🗣️ AI 情景对话模拟</h3>
+                        <h3 class="section-title">🗣️ AI 상황 대화 시뮬레이션</h3>
                         <div id="ai-scenario-area">
                             <div class="scenario-difficulty-selector" style="margin-bottom: 10px; padding: 8px; background-color: #f0f0f0; border-radius: 6px;">
-                                <label style="font-weight: bold; font-size: 0.95em;">选择对话难度：</label>
-                                <input type="radio" name="scenario-difficulty" value="beginner" id="diff-beginner" checked> <label for="diff-beginner" style="font-size: 0.9em;">初级</label>
-                                <input type="radio" name="scenario-difficulty" value="intermediate" id="diff-intermediate"> <label for="diff-intermediate" style="font-size: 0.9em;">中级</label>
-                                <input type="radio" name="scenario-difficulty" value="advanced" id="diff-advanced"> <label for="diff-advanced" style="font-size: 0.9em;">高级</label>
+                                <label style="font-weight: bold; font-size: 0.95em;">대화 난이도 선택:</label>
+                                <input type="radio" name="scenario-difficulty" value="beginner" id="diff-beginner" checked> <label for="diff-beginner" style="font-size: 0.9em;">초급</label>
+                                <input type="radio" name="scenario-difficulty" value="intermediate" id="diff-intermediate"> <label for="diff-intermediate" style="font-size: 0.9em;">중급</label>
+                                <input type="radio" name="scenario-difficulty" value="advanced" id="diff-advanced"> <label for="diff-advanced" style="font-size: 0.9em;">고급</label>
                             </div>
-                            <p id="ai-scenario-description">点击下方按钮生成对话情境。</p>
+                            <p id="ai-scenario-description">아래 버튼을 눌러 대화 상황을 생성하세요.</p>
                             <div id="ai-scenario-dialogue-history"></div>
-                            <textarea id="user-scenario-response" placeholder="请输入您的韩语回应..."></textarea>
-                            <button class="ai-action-btn" id="submit-scenario-response-btn">发送回应</button>
+                            <textarea id="user-scenario-response" placeholder="한국어 응답을 입력하세요..."></textarea>
+                            <button class="ai-action-btn" id="submit-scenario-response-btn">응답 보내기</button>
                             <div id="ai-scenario-feedback" class="ai-output-box" style="margin-top:5px; display:none;"></div>
                         </div>
-                        <button class="ai-action-btn" id="generate-scenario-btn" style="margin-top:10px;">获取新对话情境</button>
+                        <button class="ai-action-btn" id="generate-scenario-btn" style="margin-top:10px;">새 대화 상황 가져오기</button>
                     </div>
                 </div>
 
                 <div id="feature-essay-correction" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">📝 AI 批改作文</h3>
-                        <textarea id="essay-input" placeholder="在此输入您的韩语作文..."></textarea>
-                        <button class="ai-action-btn" id="correct-essay-btn">AI 批改作文</button>
+                        <h3 class="section-title">📝 AI 작문 교정</h3>
+                        <textarea id="essay-input" placeholder="여기에 한국어 작문을 입력하세요..."></textarea>
+                        <button class="ai-action-btn" id="correct-essay-btn">AI 작문 교정</button>
                         <div id="essay-feedback-area" class="ai-output-box" style="display:none;"></div>
                     </div>
                 </div>
 
                 <div id="feature-mc-questions" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showAIFunctionsMenu()">← 返回 AI 功能</button>
+                    <button class="back-button" onclick="showAIFunctionsMenu()">← AI 기능으로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">❓ AI 自动生成选择题</h3>
+                        <h3 class="section-title">❓ AI 객관식 문제 생성</h3>
                         <div class="mc-category-select">
-                            <label>选择题类型:</label>
-                            <input type="radio" name="mc-category" value="grammar" id="mc-grammar" checked> <label for="mc-grammar">语法</label>
-                            <input type="radio" name="mc-category" value="proverb" id="mc-proverb"> <label for="mc-proverb">谚语俗语</label>
+                            <label>문제 유형:</label>
+                            <input type="radio" name="mc-category" value="grammar" id="mc-grammar" checked> <label for="mc-grammar">문법</label>
+                            <input type="radio" name="mc-category" value="proverb" id="mc-proverb"> <label for="mc-proverb">속담/관용구</label>
                         </div>
                         <div class="mc-question-controls">
-                            <label for="mc-count">数量:</label>
+                            <label for="mc-count">문제 수:</label>
                             <input type="number" id="mc-count" value="3" min="1" max="5">
-                            <button class="ai-action-btn" id="generate-mc-btn">生成选择题</button>
+                            <button class="ai-action-btn" id="generate-mc-btn">문제 생성</button>
                         </div>
                         <div id="mc-questions-area" style="margin-top: 15px;">
-                            <p class="no-questions" style="text-align: center; color: var(--wechat-text-secondary);">点击上方按钮生成题目。</p>
+                            <p class="no-questions" style="text-align: center; color: var(--wechat-text-secondary);">위의 버튼을 눌러 문제를 생성하세요.</p>
                         </div>
-                        <button class="ai-action-btn" id="submit-mc-answers-btn" style="display: none; margin-top: 15px;">提交答案</button>
+                        <button class="ai-action-btn" id="submit-mc-answers-btn" style="display: none; margin-top: 15px;">답안 제출</button>
                     </div>
                 </div>
 
                 <div id="page-exchange-rate" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 한국 생활 도우미로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">💱 人民币/韩币 汇率换算</h3>
+                        <h3 class="section-title">💱 중국 원/한국 원 환율 계산</h3>
                         <div class="exchange-rate-input-group">
-                            <input type="number" id="exchange-input-amount" placeholder="输入金额" value="100">
+                            <input type="number" id="exchange-input-amount" placeholder="금액 입력" value="100">
                             <select id="exchange-from-currency">
-                                <option value="CNY">人民币 (CNY)</option>
-                                <option value="KRW">韩币 (KRW)</option>
+                                <option value="CNY">중국 원 (CNY)</option>
+                                <option value="KRW">한국 원 (KRW)</option>
                             </select>
-                            <span> 兑 </span>
+                            <span> → </span>
                             <select id="exchange-to-currency">
-                                <option value="KRW">韩币 (KRW)</option>
-                                <option value="CNY">人民币 (CNY)</option>
+                                <option value="KRW">한국 원 (KRW)</option>
+                                <option value="CNY">중국 원 (CNY)</option>
                             </select>
                         </div>
-                        <button class="ai-action-btn" id="do-exchange-rate-btn">立即换算</button>
-                        <div class="exchange-rate-result ai-output-box" id="exchange-rate-output">换算结果将显示在此。</div>
+                        <button class="ai-action-btn" id="do-exchange-rate-btn">환산하기</button>
+                        <div class="exchange-rate-result ai-output-box" id="exchange-rate-output">환산 결과가 여기에 표시됩니다.</div>
                     </div>
                 </div>
 
                 <div id="page-korean-story" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 한국 생활 도우미로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">📚 韩中双语小故事</h3>
-                        <button class="ai-action-btn" id="fetch-korean-story-btn">生成小故事</button>
+                        <h3 class="section-title">📚 한중 이중어 짧은 이야기</h3>
+                        <button class="ai-action-btn" id="fetch-korean-story-btn">이야기 생성</button>
                         <div class="news-output ai-output-box" id="korean-story-output">
-                            点击上方按钮生成一个关于韩国文化或历史的双语小故事。
+                            위의 버튼을 눌러 한국 문화나 역사에 관한 한중 이중어 이야기를 생성하세요.
                         </div>
                     </div>
                 </div>
 
                 <div id="page-trash-classification" class="ai-sub-feature-section">
-                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 返回 韩国生活小助手</button>
+                    <button class="back-button" onclick="showKoreanLifeHelperMenu()">← 한국 생활 도우미로 돌아가기</button>
                     <div class="section-container">
-                        <h3 class="section-title">🗑️ 垃圾分类 (看图识别)</h3>
-                        <label for="trash-image-upload" class="image-upload-label">选择垃圾图片</label>
+                        <h3 class="section-title">🗑️ 쓰레기 분류 (이미지 인식)</h3>
+                        <label for="trash-image-upload" class="image-upload-label">쓰레기 이미지 선택</label>
                         <input type="file" id="trash-image-upload" accept="image/*">
                         <div id="trash-image-preview-container" style="text-align: center; margin-bottom: 10px;">
-                            <img id="trash-image-preview" src="#" alt="图片预览" style="max-width: 100%; max-height: 180px; border-radius: 6px; display: none;">
+                            <img id="trash-image-preview" src="#" alt="미리보기" style="max-width: 100%; max-height: 180px; border-radius: 6px; display: none;">
                         </div>
-                        <button class="ai-action-btn" id="recognize-trash-image-btn" disabled>AI 识别并分类</button>
+                        <button class="ai-action-btn" id="recognize-trash-image-btn" disabled>AI 인식 및 분류</button>
                         <div class="trash-recognition-output ai-output-box" id="trash-image-recognition-output" style="display:none;">
-                            识别结果将显示在此。
+                            인식 결과가 여기에 표시됩니다.
                         </div>
                     </div>
                     <div class="section-container" style="margin-top: 15px;">
-                        <h3 class="section-title">🗑️ 垃圾分类 (文字识别)</h3>
+                        <h3 class="section-title">🗑️ 쓰레기 분류 (텍스트 인식)</h3>
                         <div class="trash-input-group">
-                            <input type="text" id="trash-text-input" placeholder="输入垃圾名称（韩语或中文）">
-                            <button class="ai-action-btn" id="classify-trash-text-btn">文字识别并分类</button>
+                            <input type="text" id="trash-text-input" placeholder="쓰레기 이름 입력(한글 또는 중국어)">
+                            <button class="ai-action-btn" id="classify-trash-text-btn">텍스트 인식 및 분류</button>
                         </div>
                         <div class="trash-text-output ai-output-box" id="trash-text-classification-output">
-                            分类结果将显示在此。
+                            분류 결과가 여기에 표시됩니다.
                         </div>
                     </div>
                 </div>
@@ -1079,30 +1077,30 @@
 
             <div id="page-settings" class="content-page">
                 <div class="profile-section">
-                     <img src="https://k.sinaimg.cn/n/sinakd10107/452/w1079h973/20200331/5d90-irpunah6808860.jpg/w700d1q75cms.jpg" alt="用户头像" class="profile-avatar">
+                     <img src="https://k.sinaimg.cn/n/sinakd10107/452/w1079h973/20200331/5d90-irpunah6808860.jpg/w700d1q75cms.jpg" alt="사용자 아바타" class="profile-avatar">
                     <div class="profile-info">
-                        <h3><span id="current-username-display">用户名</span></h3>
-                        <p>尊贵的永久VIP会员</p>
+                        <h3><span id="current-username-display">사용자 이름</span></h3>
+                        <p>소중한 영구 VIP 회원</p>
                     </div>
                 </div>
 
                 <div class="settings-list" id="settings-main-menu">
-                    <div class="modal-section-title" style="padding: 15px 15px 5px 15px;">学习设置</div>
+                    <div class="modal-section-title" style="padding: 15px 15px 5px 15px;">학습 설정</div>
                     <ul>
                         <li class="setting-item" id="learning-goals-menu-item">
-                            <label><span class="icon">🎯</span> 学习目标</label>
+                            <label><span class="icon">🎯</span> 학습 목표</label>
                             <span class="arrow">▶</span>
                         </li>
                         <li class="setting-item">
-                            <label for="word-list-select">字库:</label>
+                            <label for="word-list-select">단어장:</label>
                             <select id="word-list-select" style="width: 150px; padding: 5px; border: 1px solid var(--wechat-border-color); border-radius: 4px; display: inline-block; margin-bottom:0; background-color: var(--wechat-input-bg); color: var(--wechat-text-primary);">
-                                <option value="general">通用词汇</option>
-                                <option value="computer">计算机专业词汇</option>
-                                <option value="business">经营专业词汇</option>
+                                <option value="general">일반 어휘</option>
+                                <option value="computer">컴퓨터 전문 어휘</option>
+                                <option value="business">경영 전문 어휘</option>
                             </select>
                         </li>
                         <li class="setting-item">
-                            <label for="auto-pronounce-next"><span class="icon">🔊</span> 自动发音下一个单词</label>
+                            <label for="auto-pronounce-next"><span class="icon">🔊</span> 다음 단어 자동 발음</label>
                             <label class="toggle-switch">
                                 <input type="checkbox" id="auto-pronounce-next" checked>
                                 <span class="slider"></span>
@@ -1110,25 +1108,25 @@
                         </li>
                     </ul>
 
-                    <div class="modal-section-title" style="padding: 15px 15px 5px 15px;">UI 设置</div>
+                    <div class="modal-section-title" style="padding: 15px 15px 5px 15px;">UI 설정</div>
                     <ul>
                         <li class="setting-item">
-                            <label for="dark-mode-toggle"><span class="icon">🌙</span> 暗黑模式</label>
+                            <label for="dark-mode-toggle"><span class="icon">🌙</span> 다크 모드</label>
                             <label class="toggle-switch">
                                 <input type="checkbox" id="dark-mode-toggle">
                                 <span class="slider"></span>
                             </label>
                         </li>
                         <li class="setting-item" style="padding-bottom: 15px;">
-                            <label><span class="icon">🎨</span> 主题颜色</label>
+                            <label><span class="icon">🎨</span> 테마 색상</label>
                             <div>
-                                <span class="color-option color-red" data-color="red" title="红色"></span>
-                                <span class="color-option color-orange" data-color="orange" title="橙色"></span>
-                                <span class="color-option color-yellow" data-color="yellow" title="黄色"></span>
-                                <span class="color-option color-green" data-color="green" title="绿色"></span>
-                                <span class="color-option color-cyan" data-color="cyan" title="青色"></span>
-                                <span class="color-option color-blue" data-color="blue" title="蓝色"></span>
-                                <span class="color-option color-purple" data-color="purple" title="紫色"></span>
+                                <span class="color-option color-red" data-color="red" title="빨간색"></span>
+                                <span class="color-option color-orange" data-color="orange" title="주황색"></span>
+                                <span class="color-option color-yellow" data-color="yellow" title="노란색"></span>
+                                <span class="color-option color-green" data-color="green" title="초록색"></span>
+                                <span class="color-option color-cyan" data-color="cyan" title="청록색"></span>
+                                <span class="color-option color-blue" data-color="blue" title="파란색"></span>
+                                <span class="color-option color-purple" data-color="purple" title="보라색"></span>
                             </div>
                         </li>
                     </ul>
@@ -1136,66 +1134,61 @@
 
                 <div class="about-section">
                     <button class="about-button" onclick="showAboutPage()">
-                        <span class="icon">ℹ️</span> 关于
+                        <span class="icon">ℹ️</span> 정보
                     </button>
                 </div>
             </div>
 
             <div id="page-study-goals" class="content-page">
-                <button class="back-button" onclick="showSettingsMainMenu()">← 返回</button>
+                <button class="back-button" onclick="showSettingsMainMenu()">← 돌아가기</button>
                 <div class="goals-container">
-                    <h3>学习目标设定</h3>
+                    <h3>학습 목표 설정</h3>
                     <div class="goal-item">
-                        <label for="daily-study-amount">每日新词学习量:</label>
+                        <label for="daily-study-amount">일일 새 단어 학습량:</label>
                         <input type="number" id="daily-study-amount" value="10" min="1" max="50">
                     </div>
                 </div>
 
                 <div class="streak-calendar">
-                    <h3>学习打卡日历</h3>
+                    <h3>학습 달력</h3>
                     <div class="calendar-header">
                         <span id="calendar-month-year"></span>
                     </div>
                     <div class="calendar-grid" id="calendar-grid">
-                        <div class="calendar-day-header">日</div>
-                        <div class="calendar-day-header">一</div>
-                        <div class="calendar-day-header">二</div>
-                        <div class="calendar-day-header">三</div>
-                        <div class="calendar-day-header">四</div>
-                        <div class="calendar-day-header">五</div>
-                        <div class="calendar-day-header">六</div>
+                        <div class="calendar-day-header">일</div>
+                        <div class="calendar-day-header">월</div>
+                        <div class="calendar-day-header">화</div>
+                        <div class="calendar-day-header">수</div>
+                        <div class="calendar-day-header">목</div>
+                        <div class="calendar-day-header">금</div>
+                        <div class="calendar-day-header">토</div>
                         </div>
                      <p style="font-size: 0.85em; color: var(--wechat-text-secondary); text-align: center; margin-top: 15px;">
-                        每日学习新词达到目标数量后自动打卡。
+                        매일 새 단어 학습 목표 달성 시 자동 기록됩니다.
                     </p>
                 </div>
             </div>
 
 
             <div id="page-about" class="content-page">
-                <button class="back-button" onclick="setActivePage('page-settings', '我')">← 返回</button>
+                <button class="back-button" onclick="setActivePage('page-settings', '설정')">← 돌아가기</button>
                 <div class="about-content-area">
-                    <h3>关于本应用</h3>
+                    <h3>앱 정보</h3>
                     <p>
-                        <strong>中文:</strong> 本软件由MiniWorld团队开发。<br>
-                        <strong>有问题请联系:</strong> haechojo@gmail.com<br>
-                        <strong>版本号:</strong> 0.9beta<br>
-                        <strong>发布日期:</strong> 2025年5月27日
-                    </p>
-                    <p>
-                        <strong>한국어:</strong> 이 소프트웨어는 MiniWorld 팀에 의해 개발되었습니다.<br>
-                        <strong>문의:</strong> haechojo@gmail.com<                        <strong>버전:</strong> 0.9beta<br>
-                        <strong>출시일:</strong> 2025년 5月27日
+                        <strong>한국어:</strong> 이 소프트웨어는 MiniWorld 팀에서 개발했습니다.<br>
+                        <strong>문의:</strong> haechojo@gmail.com<br>
+                        <strong>버전:</strong> 0.9beta<br>
+                        <strong>출시일:</strong> 2025년 5월 27일
                     </p>
                 </div>
             </div>
         </main>
 
         <nav class="wechat-tabbar">
-            <div class="tab-item active" data-page="page-memorize" data-title="背单词"><div class="tab-item-icon">🧠</div><div class="tab-item-label">背单词</div></div>
-            <div class="tab-item" data-page="page-review-plan" data-title="复习"><div class="tab-item-icon">📅</div><div class="tab-item-label">复习</div></div>
-            <div class="tab-item" data-page="page-ai-functions" data-title="AI功能"><div class="tab-item-icon">🤖</div><div class="tab-item-label">AI功能</div></div>
-            <div class="tab-item" data-page="page-settings" data-title="我"><div class="tab-item-icon">👤</div><div class="tab-item-label">我</div></div>
+            <div class="tab-item active" data-page="page-memorize" data-title="단어 암기"><div class="tab-item-icon">🧠</div><div class="tab-item-label">단어 암기</div></div>
+            <div class="tab-item" data-page="page-review-plan" data-title="복습"><div class="tab-item-icon">📅</div><div class="tab-item-label">복습</div></div>
+            <div class="tab-item" data-page="page-ai-functions" data-title="AI 기능"><div class="tab-item-icon">🤖</div><div class="tab-item-label">AI 기능</div></div>
+            <div class="tab-item" data-page="page-settings" data-title="설정"><div class="tab-item-icon">👤</div><div class="tab-item-label">설정</div></div>
         </nav>
     </div>
 
@@ -1500,15 +1493,15 @@
         const year = now.getFullYear();
         const month = now.getMonth();
 
-        calendarMonthYearEl.textContent = `${year}年 ${month + 1}月`;
+        calendarMonthYearEl.textContent = `${year}년 ${month + 1}월`;
         calendarGridEl.innerHTML = `
-            <div class="calendar-day-header">日</div>
-            <div class="calendar-day-header">一</div>
-            <div class="calendar-day-header">二</div>
-            <div class="calendar-day-header">三</div>
-            <div class="calendar-day-header">四</div>
-            <div class="calendar-day-header">五</div>
-            <div class="calendar-day-header">六</div>
+            <div class="calendar-day-header">일</div>
+            <div class="calendar-day-header">월</div>
+            <div class="calendar-day-header">화</div>
+            <div class="calendar-day-header">수</div>
+            <div class="calendar-day-header">목</div>
+            <div class="calendar-day-header">금</div>
+            <div class="calendar-day-header">토</div>
         `;
 
         const firstDayOfMonth = new Date(year, month, 1);
@@ -1672,7 +1665,7 @@
             } else { throw new Error("AI未能生成有效内容或返回了预期外的数据结构。"); }
         } catch (error) {
             console.error(`Gemini API 调用失败，目的 "${purpose}":`, error);
-            if (targetElementForLoading) { targetElementForLoading.textContent = `AI调用失败: ${error.message}`; targetElementForLoading.classList.add('error');}
+            if (targetElementForLoading) { targetElementForLoading.textContent = `AI 호출 실패: ${error.message}`; targetElementForLoading.classList.add('error');}
             return null;
         }
     }
@@ -1720,7 +1713,7 @@
 
     async function searchAIDictionary() {
         const koreanWord = koreanWordInputEl.value.trim();
-        if (!koreanWord) { dictionaryOutputEl.textContent = "请输入要查询的韩语单词。"; dictionaryOutputEl.classList.remove('loading', 'error'); return; }
+        if (!koreanWord) { dictionaryOutputEl.textContent = "请조회할 한국어 단어 입력... dictionaryOutputEl.classList.remove('loading', 'error'); return; }
         const prompt = `请为韩语单词 "${koreanWord}" 提供一个详细的中文词典条目，包含以下部分：\n1. **发音**：[罗马音标记]\n2. **词性**：例如 名词, 动词, 形容词等。\n3. **中文释义**：列出1-3个主要意思，每个意思后附带一个韩语例句及其简体中文翻译。\n   - 意思1: [中文意思1]\n     例句 (韩): [韩语例句1]\n     例句 (中): [中文翻译1]\n   - 意思2: [中文意思2]\n     例句 (韩): [韩语例句2]\n     例句 (中): [中文翻译2]\n4. **常用搭配** (可选，1-2个)：例如 "${koreanWord} + (名词/动词)"\n5. **近义词** (可选，1个)：[韩语近义词] - [中文意思]\n6. **反义词** (可选，1个)：[韩语反义词] - [中文意思]\n7. **词源/助记** (可选，一句话简述，若有意义)：\n请确保格式清晰，例句实用。如果某些部分不适用或难以找到，可以省略该部分，但请尽量提供核心信息。`;
         const dictionaryEntryText = await callGeminiAPI([{text: prompt}], "ai_dictionary", dictionaryOutputEl);
         if (dictionaryEntryText && !dictionaryOutputEl.classList.contains('error')) {
@@ -1729,7 +1722,7 @@
     }
 
     async function generateImageRecognition() {
-        if (!uploadedImageBase64Rec || !uploadedImageMimeTypeRec) { alert("请先选择一张图片。"); return; }
+        if (!uploadedImageBase64Rec || !uploadedImageMimeTypeRec) { alert("먼저 이미지를 선택하세요."); return; }
         imageRecognizedKoTextEl.textContent = ""; imageRecognizedZhTextEl.textContent = "";
         const recognitionOutputKoBox = document.getElementById('ai-image-recognition-output-ko');
         const recognitionOutputZhBox = document.getElementById('ai-image-recognition-output-zh');
@@ -1746,16 +1739,16 @@
 
         if (resultText && !recognitionOutputKoBox.classList.contains('error')) {
             const parts = resultText.split("---中文翻译及解释---");
-            imageRecognizedKoTextEl.textContent = parts[0] ? parts[0].trim() : "AI未能识别到韩语文字。";
+            imageRecognizedKoTextEl.textContent = parts[0] ? parts[0].trim() : "AI가 한글을 인식하지 못했습니다.";
             if (parts[1]) {
                 imageRecognizedZhTextEl.textContent = parts[1].trim();
                 recognitionOutputZhBox.style.display = 'block';
             } else {
-                imageRecognizedZhTextEl.textContent = "AI未能提供中文翻译和解释。";
+                imageRecognizedZhTextEl.textContent = "AI가 중국어 번역과 설명을 제공하지 못했습니다.";
                 recognitionOutputZhBox.style.display = 'block';
             }
         } else if (!resultText && !recognitionOutputKoBox.classList.contains('error')) {
-            imageRecognizedKoTextEl.textContent = "AI看图识别韩文失败或未返回内容。";
+            imageRecognizedKoTextEl.textContent = "AI가 이미지를 분석하여 한글을 인식하지 못했습니다.";
         }
     }
 
@@ -1763,11 +1756,11 @@
         clozeQuestionTextEl.textContent = ""; clozeHintTextEl.textContent = ""; clozeAnswerInputEl.value = "";
         clozeFeedbackEl.textContent = ""; clozeCorrectSentenceEl.textContent = ""; currentClozeWordData = null;
         const learnedKeys = Object.keys(learnedWordsData);
-        if (learnedKeys.length === 0) { clozeQuestionTextEl.textContent = "请先学习一些单词才能进行填空练习。"; return; }
+        if (learnedKeys.length === 0) { clozeQuestionTextEl.textContent = "먼저 단어를 몇 개 학습한 후 빈칸 연습을 하세요."; return; }
         const randomWordKey = learnedKeys[Math.floor(Math.random() * learnedKeys.length)];
         const wordData = wordList.find(w => w.korean === randomWordKey) || {};
         if (!wordData.korean_example || !wordData.chinese_example) {
-            clozeQuestionTextEl.textContent = "未能找到含有例句的已学单词，请多学习一些单词或重试。";
+            clozeQuestionTextEl.textContent = "예문이 있는 학습 단어를 찾지 못했습니다. 단어를 더 학습하거나 다시 시도하세요.";
             return;
         }
         currentClozeWordData = wordData;
@@ -1777,20 +1770,20 @@
         const clozeSentence = exampleSentence.replace(wordData.korean, "_____");
 
         clozeQuestionTextEl.textContent = clozeSentence;
-        clozeHintTextEl.textContent = `提示 (中文): ${chineseExample}`;
+        clozeHintTextEl.textContent = `힌트 (중국어): ${chineseExample}`;
         clozeCorrectSentenceEl.style.display = 'none';
     }
     function submitClozeAnswer() {
         const userAnswer = clozeAnswerInputEl.value.trim();
-        if (!currentClozeWordData || !userAnswer) { clozeFeedbackEl.textContent = "请输入答案。"; clozeFeedbackEl.style.color = "var(--warning-color)"; return; }
-        if (userAnswer === currentClozeWordData.korean) { clozeFeedbackEl.textContent = "回答正确！🎉"; clozeFeedbackEl.style.color = "var(--primary-color)"; }
-        else { clozeFeedbackEl.textContent = `回答错误。正确答案是: ${currentClozeWordData.korean}`; clozeFeedbackEl.style.color = "var(--danger-color)"; }
-        if(currentClozeWordData.korean_example) clozeCorrectSentenceEl.textContent = `正确句子: ${currentClozeWordData.korean_example.split('\n')[0]}`;
+        if (!currentClozeWordData || !userAnswer) { clozeFeedbackEl.textContent = "정답을 입력하세요."; clozeFeedbackEl.style.color = "var(--warning-color)"; return; }
+        if (userAnswer === currentClozeWordData.korean) { clozeFeedbackEl.textContent = "정답입니다! 🎉"; clozeFeedbackEl.style.color = "var(--primary-color)"; }
+        else { clozeFeedbackEl.textContent = `오답입니다. 정답은: ${currentClozeWordData.korean}`; clozeFeedbackEl.style.color = "var(--danger-color)"; }
+        if(currentClozeWordData.korean_example) clozeCorrectSentenceEl.textContent = `정답 문장: ${currentClozeWordData.korean_example.split('\n')[0]}`;
         clozeCorrectSentenceEl.style.display = 'block';
     }
 
     async function generateAIScenario() {
-        currentAIScenarioContext = []; aiScenarioDescriptionEl.textContent = "AI 构思情境中...";
+        currentAIScenarioContext = []; aiScenarioDescriptionEl.textContent = "AI가 상황을 구상하는 중...";
         aiScenarioDialogueHistoryEl.innerHTML = ""; aiScenarioDialogueHistoryEl.style.display = 'none';
         userScenarioResponseEl.value = ""; aiScenarioFeedbackEl.textContent = ""; aiScenarioFeedbackEl.style.display = 'none';
         const selectedDifficulty = document.querySelector('input[name="scenario-difficulty"]:checked').value;
@@ -1830,16 +1823,16 @@
                 currentAIScenarioContext.push({ role: "model", parts: [{ text: aiDialogue }] });
                 updateScenarioDialogueHistory();
                 aiScenarioDialogueHistoryEl.style.display = 'block';
-                userScenarioResponseEl.placeholder = `你的任务: ${parts[2]}`;
+                userScenarioResponseEl.placeholder = `당신의 임무: ${parts[2]}`;
 
-            } else { aiScenarioDescriptionEl.textContent = "AI场景生成格式错误。请重试。"; }
-        } else if (!scenarioData && !aiScenarioDescriptionEl.classList.contains('error')) { aiScenarioDescriptionEl.textContent = "AI场景生成失败。"; }
+            } else { aiScenarioDescriptionEl.textContent = "AI 상황 생성 형식 오류입니다. 다시 시도하세요."; }
+        } else if (!scenarioData && !aiScenarioDescriptionEl.classList.contains('error')) { aiScenarioDescriptionEl.textContent = "AI 상황 생성에 실패했습니다."; }
     }
 
     async function submitScenarioResponse() {
         const userResponse = userScenarioResponseEl.value.trim();
         if (!userResponse) {
-            aiScenarioFeedbackEl.textContent = "请输入您的回应。";
+            aiScenarioFeedbackEl.textContent = "응답을 입력하세요.";
             aiScenarioFeedbackEl.style.color = "var(--warning-color)";
             aiScenarioFeedbackEl.style.display = 'block';
             return;
@@ -1849,7 +1842,7 @@
         updateScenarioDialogueHistory();
         userScenarioResponseEl.value = "";
 
-        aiScenarioFeedbackEl.textContent = "AI 思考回应中...";
+        aiScenarioFeedbackEl.textContent = "AI가 응답을 생각하는 중...";
         aiScenarioFeedbackEl.style.display = 'block';
         aiScenarioFeedbackEl.classList.remove('error', 'success');
 
@@ -1862,20 +1855,20 @@
 
         if (aiFullResponse) {
             const parts = aiFullResponse.split("---反馈---");
-            const feedbackText = parts[0] ? parts[0].trim() : "AI 未提供明确反馈。";
-            const aiNextKoreanUtterance = parts[1] ? parts[1].trim() : "음... 다시 한번 말씀해주시겠어요? (嗯...能再说一遍？)";
+            const feedbackText = parts[0] ? parts[0].trim() : "AI가 명확한 피드백을 제공하지 않았습니다.";
+            const aiNextKoreanUtterance = parts[1] ? parts[1].trim() : "음... 다시 한번 말씀해주시겠어요?";
 
-            aiScenarioFeedbackEl.textContent = `AI反馈: ${feedbackText}`;
+            aiScenarioFeedbackEl.textContent = `AI 피드백: ${feedbackText}`;
             aiScenarioFeedbackEl.style.color = "var(--wechat-text-secondary)";
 
             currentAIScenarioContext.push({ role: "model", parts: [{ text: aiNextKoreanUtterance }] });
             updateScenarioDialogueHistory();
 
             if (aiNextKoreanUtterance.includes("감사합니다") || aiNextKoreanUtterance.includes("안녕히 가세요") || currentAIScenarioContext.length > 8) {
-                aiScenarioFeedbackEl.textContent += "\n对话结束。";
+                aiScenarioFeedbackEl.textContent += "\n대화가 종료되었습니다.";
             }
         } else {
-            aiScenarioFeedbackEl.textContent = "AI回应生成失败。";
+            aiScenarioFeedbackEl.textContent = "AI 응답 생성 실패.";
             aiScenarioFeedbackEl.classList.add('error');
             currentAIScenarioContext.pop();
             updateScenarioDialogueHistory();
@@ -1883,7 +1876,7 @@
     }
     function updateScenarioDialogueHistory() {
         aiScenarioDialogueHistoryEl.innerHTML = currentAIScenarioContext.map(turn => {
-            const speaker = turn.role === 'user' ? '您' : 'AI';
+            const speaker = turn.role === 'user' ? '당신' : 'AI';
             const cssClass = turn.role === 'user' ? 'user-utterance' : 'ai-utterance';
             return `<p class="${cssClass}"><strong>${speaker}:</strong> ${turn.parts[0].text.replace(/\n/g, "<br>")}</p>`;
         }).join('');
@@ -1893,7 +1886,7 @@
     async function correctEssay() {
         const essayText = essayInputEl.value.trim();
         if (!essayText) {
-            essayFeedbackAreaEl.textContent = "请输入您要批改的韩语作文。";
+            essayFeedbackAreaEl.textContent = "교정할 한국어 작문을 입력하세요.";
             essayFeedbackAreaEl.classList.remove('loading', 'error');
             essayFeedbackAreaEl.style.display = 'block';
             return;
@@ -1914,7 +1907,7 @@
             essayFeedbackAreaEl.innerHTML = feedback.replace(/\n/g, '<br>');
             essayFeedbackAreaEl.style.display = 'block';
         } else if (!feedback && !essayFeedbackAreaEl.classList.contains('error')) {
-            essayFeedbackAreaEl.textContent = "AI批改作文失败或未返回内容。";
+            essayFeedbackAreaEl.textContent = "AI가 작문 교정을 실패했거나 응답이 없습니다.";
             essayFeedbackAreaEl.style.display = 'block';
         }
     }
@@ -1924,12 +1917,12 @@
         const count = parseInt(mcCountInputEl.value, 10);
 
         if (count < 1 || count > 5) {
-            mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">请输入问题数量（1-5）。</p>`;
+            mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">문제 수를 입력하세요 (1-5).</p>`;
             submitMcAnswersBtnEl.style.display = 'none';
             return;
         }
 
-        mcQuestionsAreaEl.innerHTML = `<p style="text-align:center; color:var(--ai-accent-color); font-style:italic;">AI 正在生成题目...</p>`;
+        mcQuestionsAreaEl.innerHTML = `<p style="text-align:center; color:var(--ai-accent-color); font-style:italic;">AI가 문제를 생성 중...</p>`;
         submitMcAnswersBtnEl.style.display = 'none';
         currentMCQuestions = [];
 
@@ -2010,11 +2003,11 @@
                 mcQuestionsAreaEl.innerHTML = htmlContent;
                 submitMcAnswersBtnEl.style.display = 'block';
             } else {
-                mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">AI未能生成有效题目。请尝试更改话题或数量。</p>`;
+                mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">AI가 유효한 문제를 생성하지 못했습니다. 주제나 수량을 변경해 보세요.</p>`;
             }
 
         } else if (!rawQuestions && !mcQuestionsAreaEl.classList.contains('error')) {
-            mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">AI题目生成失败。</p>`;
+            mcQuestionsAreaEl.innerHTML = `<p style="color:var(--danger-color); text-align:center;">AI 문제 생성 실패.</p>`;
         }
     }
 
@@ -2026,7 +2019,7 @@
             const explanationEl = document.getElementById(`explanation-${q.id}`);
 
             if (!selectedOption) {
-                feedbackEl.textContent = "请选择一个答案。";
+                feedbackEl.textContent = "하나의 답을 선택하세요.";
                 feedbackEl.className = 'mc-feedback incorrect';
                 allCorrect = false;
                 explanationEl.style.display = 'none';
@@ -2035,11 +2028,11 @@
 
             q.userAnswer = selectedOption.value;
             if (q.userAnswer === q.correctAnswer) {
-                feedbackEl.textContent = "回答正确！🎉";
+                feedbackEl.textContent = "정답입니다! 🎉";
                 feedbackEl.className = 'mc-feedback correct';
                 explanationEl.style.display = 'block';
             } else {
-                feedbackEl.textContent = `回答错误。正确答案是 ${q.correctAnswer}。`;
+                feedbackEl.textContent = `오답입니다. 정답은 ${q.correctAnswer}`;
                 feedbackEl.className = 'mc-feedback incorrect';
                 allCorrect = false;
                 explanationEl.style.display = 'block';
@@ -2047,14 +2040,14 @@
         });
 
         if (currentMCQuestions.length > 0 && allCorrect) {
-            alert("恭喜！所有题目都答对了！");
+            alert("축하합니다! 모든 문제를 맞추셨습니다!");
         }
     }
 
     async function convertCurrency() {
         const amount = parseFloat(exchangeInputAmountEl.value);
         if (isNaN(amount) || amount <= 0) {
-            exchangeRateOutputEl.textContent = "请输入有效的金额。";
+            exchangeRateOutputEl.textContent = "유효한 금액을 입력하세요.";
             exchangeRateOutputEl.classList.remove('loading', 'error');
             return;
         }
@@ -2063,12 +2056,12 @@
         const toCurrency = exchangeToCurrencyEl.value;
 
         if (fromCurrency === toCurrency) {
-            exchangeRateOutputEl.textContent = `无需换算，${amount} ${fromCurrency} 就是 ${amount} ${toCurrency}。`;
+            exchangeRateOutputEl.textContent = `환산할 필요가 없습니다. ${amount} ${fromCurrency} 는 ${amount} ${toCurrency} 입니다.`;
             exchangeRateOutputEl.classList.remove('loading', 'error');
             return;
         }
 
-        exchangeRateOutputEl.textContent = "AI 正在获取汇率并换算...";
+        exchangeRateOutputEl.textContent = "AI가 환율을 가져와 계산 중...";
         exchangeRateOutputEl.classList.add('loading');
         exchangeRateOutputEl.classList.remove('error');
 
@@ -2082,14 +2075,14 @@
         const result = await callGeminiAPI([{text: prompt}], "currency_conversion", exchangeRateOutputEl);
 
         if (result && !exchangeRateOutputEl.classList.contains('error')) {
-            exchangeRateOutputEl.textContent = `换算结果：${result}`;
+            exchangeRateOutputEl.textContent = `환산 결과: ${result}`;
         } else if (!result && !exchangeRateOutputEl.classList.contains('error')) {
-            exchangeRateOutputEl.textContent = "汇率换算失败，请稍后再试。";
+            exchangeRateOutputEl.textContent = "환율 계산에 실패했습니다. 잠시 후 다시 시도하세요.";
         }
     }
 
     async function fetchKoreanStory() {
-        koreanStoryOutputEl.textContent = "AI 正在为您生成韩国小故事...";
+        koreanStoryOutputEl.textContent = "AI가 한국 이야기를 생성 중...";
         koreanStoryOutputEl.classList.add('loading');
         koreanStoryOutputEl.classList.remove('error');
 
@@ -2137,17 +2130,17 @@
             });
             koreanStoryOutputEl.innerHTML = htmlContent;
         } else if (!storyText && !koreanStoryOutputEl.classList.contains('error')) {
-             koreanStoryOutputEl.textContent = "未能获取小故事，请稍后再试。";
+             koreanStoryOutputEl.textContent = "이야기를 가져오지 못했습니다. 잠시 후 다시 시도하세요.";
         }
     }
 
     async function recognizeTrashImage() {
         if (!uploadedTrashImageBase64 || !uploadedTrashImageMimeType) {
-            alert("请先选择一张图片。");
+            alert("먼저 이미지를 선택하세요.");
             return;
         }
 
-        trashImageRecognitionOutputEl.textContent = "AI 正在识别图片中的垃圾...";
+        trashImageRecognitionOutputEl.textContent = "AI가 이미지를 분석하여 쓰레기를 분류하는 중...";
         trashImageRecognitionOutputEl.classList.add('loading');
         trashImageRecognitionOutputEl.classList.remove('error');
         trashImageRecognitionOutputEl.style.display = 'block';
@@ -2162,19 +2155,19 @@
         if (result && !trashImageRecognitionOutputEl.classList.contains('error')) {
             trashImageRecognitionOutputEl.innerHTML = result.replace(/\n/g, '<br>');
         } else if (!result && !trashImageRecognitionOutputEl.classList.contains('error')) {
-            trashImageRecognitionOutputEl.textContent = "图片垃圾分类识别失败。";
+            trashImageRecognitionOutputEl.textContent = "이미지 분류에 실패했습니다.";
         }
     }
 
     async function classifyTrashText() {
         const trashName = trashTextInputEl.value.trim();
         if (!trashName) {
-            trashTextClassificationOutputEl.textContent = "请输入垃圾名称。";
+            trashTextClassificationOutputEl.textContent = "쓰레기 이름을 입력하세요.";
             trashTextClassificationOutputEl.classList.remove('loading', 'error');
             return;
         }
 
-        trashTextClassificationOutputEl.textContent = "AI 正在分类垃圾...";
+        trashTextClassificationOutputEl.textContent = "AI가 쓰레기를 분류하는 중...";
         trashTextClassificationOutputEl.classList.add('loading');
         trashTextClassificationOutputEl.classList.remove('error');
         trashTextClassificationOutputEl.style.display = 'block';
@@ -2198,7 +2191,7 @@
         if (result && !trashTextClassificationOutputEl.classList.contains('error')) {
             trashTextClassificationOutputEl.innerHTML = result.replace(/\n/g, '<br>');
         } else if (!result && !trashTextClassificationOutputEl.classList.contains('error')) {
-            trashTextClassificationOutputEl.textContent = "文字垃圾分类识别失败。";
+            trashTextClassificationOutputEl.textContent = "문자 분류에 실패했습니다.";
         }
     }
 
@@ -2249,7 +2242,7 @@
         if (featureId === 'feature-cloze') {
             generateAIClozeTest();
         } else if (featureId === 'feature-scenario') {
-            aiScenarioDescriptionEl.textContent = "点击下方按钮生成对话情境。";
+            aiScenarioDescriptionEl.textContent = "아래 버튼을 눌러 대화 상황을 생성하세요.";
             aiScenarioDialogueHistoryEl.innerHTML = "";
             aiScenarioDialogueHistoryEl.style.display = 'none';
             userScenarioResponseEl.value = "";
@@ -2260,7 +2253,7 @@
              essayInputEl.value = "";
              essayFeedbackAreaEl.style.display = 'none';
         } else if (featureId === 'feature-mc-questions') {
-            mcQuestionsAreaEl.innerHTML = `<p class="no-questions" style="text-align: center; color: var(--wechat-text-secondary);">点击上方按钮生成题目。</p>`;
+            mcQuestionsAreaEl.innerHTML = `<p class="no-questions" style="text-align: center; color: var(--wechat-text-secondary);">위의 버튼을 눌러 문제를 생성하세요.</p>`;
             submitMcAnswersBtnEl.style.display = 'none';
         } else if (featureId === 'page-image-recognition') {
             imagePreviewRecEl.src = '';
@@ -2272,10 +2265,10 @@
         }
         else if (featureId === 'page-exchange-rate') {
             exchangeInputAmountEl.value = '100';
-            exchangeRateOutputEl.textContent = '换算结果将显示在此。';
+            exchangeRateOutputEl.textContent = '환산 결과가 여기에 표시됩니다.';
             exchangeRateOutputEl.classList.remove('loading', 'error');
         } else if (featureId === 'page-korean-story') {
-            koreanStoryOutputEl.textContent = '点击上方按钮生成一个关于韩国文化或历史的双语小故事。';
+            koreanStoryOutputEl.textContent = '위의 버튼을 눌러 한국 문화나 역사에 관한 한중 이중어 이야기를 생성하세요.';
             koreanStoryOutputEl.classList.remove('loading', 'error');
         } else if (featureId === 'page-trash-classification') {
             trashImagePreviewEl.src = '';
@@ -2286,14 +2279,14 @@
             trashImageUploadEl.value = '';
 
             trashTextInputEl.value = '';
-            trashTextClassificationOutputEl.textContent = '分类结果将显示在此。';
+            trashTextClassificationOutputEl.textContent = '분류 결과가 여기에 표시됩니다.';
             trashTextClassificationOutputEl.classList.remove('loading', 'error');
             trashTextClassificationOutputEl.style.display = 'block';
         }
         else if (featureId === 'korean-life-helper-menu') {
             document.getElementById('korean-life-helper-menu').classList.add('active');
             pageAiFunctionsEl.classList.remove('sub-feature-active');
-            appHeaderTitleEl.textContent = "韩国生活小助手";
+            appHeaderTitleEl.textContent = "한국 생활 도우미";
         }
     }
 
@@ -2302,7 +2295,7 @@
         pageAiFunctionsEl.classList.remove('sub-feature-active');
         aiSubFeatureSections.forEach(section => section.classList.remove('active'));
         document.getElementById('korean-life-helper-menu').classList.remove('active');
-        appHeaderTitleEl.textContent = "AI 功能";
+        appHeaderTitleEl.textContent = "AI 기능";
     }
 
     function showKoreanLifeHelperMenu() {
@@ -2310,7 +2303,7 @@
         pageAiFunctionsEl.classList.add('sub-feature-active');
         aiSubFeatureSections.forEach(section => section.classList.remove('active'));
         document.getElementById('korean-life-helper-menu').classList.add('active');
-        appHeaderTitleEl.textContent = "韩国生活小助手";
+        appHeaderTitleEl.textContent = "한국 생활 도우미";
     }
 
 
@@ -2318,13 +2311,13 @@
         document.getElementById('page-settings').classList.add('active');
         document.getElementById('page-settings').classList.remove('sub-page-active');
         pageStudyGoalsEl.classList.remove('active');
-        appHeaderTitleEl.textContent = "我";
+        appHeaderTitleEl.textContent = "설정";
     }
 
     function showStudyGoalsPage() {
         document.getElementById('page-settings').classList.remove('active');
         pageStudyGoalsEl.classList.add('active');
-        appHeaderTitleEl.textContent = "学习目标";
+        appHeaderTitleEl.textContent = "학습 목표";
         renderCalendar();
     }
 
@@ -2350,7 +2343,7 @@
         console.log("loadWord called with indexToLoad:", indexToLoad);
 
         if (!wordList || wordList.length === 0) {
-            koreanWordEl.textContent = "暂无单词可学/复习。";
+            koreanWordEl.textContent = "학습/복습할 단어가 없습니다.";
             pronunciationEl.textContent = "";
             chineseTranslationEl.textContent = "";
             exampleSentenceEl.style.display = 'none';
@@ -2368,7 +2361,7 @@
         const wordToLoad = wordList[indexToLoad];
         if (!wordToLoad) {
             console.error("No word found at index:", indexToLoad);
-            koreanWordEl.textContent = "无法载入单词。";
+            koreanWordEl.textContent = "단어를 불러올 수 없습니다.";
             pronunciationEl.textContent = "";
             chineseTranslationEl.textContent = "";
             exampleSentenceEl.style.display = 'none';
@@ -2396,7 +2389,7 @@
             flipCard(false);
         }
 
-        aiHelperBoxEl.style.display = 'none'; aiHelperContentEl.textContent = "点击下方 \"AI提示\" 获取。";
+        aiHelperBoxEl.style.display = 'none'; aiHelperContentEl.textContent = "아래 "AI 힌트" 버튼을 눌러 확인하세요.";
         aiSentenceGeneratorBoxEl.style.display = 'none'; aiGeneratedSentencesEl.innerHTML = "";
         aiUsageNotesBoxEl.style.display = 'none'; aiUsageNotesContentEl.textContent = "";
 
@@ -2567,7 +2560,7 @@
         learnedWordsData[wordKey] = wordEntry;
         saveLearnedWords();
 
-        console.log(`已标记: ${wordKey}, 次数: ${wordEntry.reviewCount}, 下次: ${new Date(wordEntry.nextReviewDue).toLocaleDateString()}, 今日新词: ${dailyNewWordsLearnedToday}/${dailyNewWordsLimit}`);
+        console.log(`已标记: ${wordKey}, 횟수: ${wordEntry.reviewCount}, 下次: ${new Date(wordEntry.nextReviewDue).toLocaleDateString()}, 今日新词: ${dailyNewWordsLearnedToday}/${dailyNewWordsLimit}`);
 
         checkDailyStudyGoal();
         loadWordForMemorizePage(true);
@@ -2593,11 +2586,11 @@
     function jumpToWordForReview(wordKey) {
         const wordIndexInList = wordList.findIndex(w => w.korean === wordKey);
         if (wordIndexInList !== -1) {
-            setActivePage('page-memorize', '背单词');
+            setActivePage('page-memorize', '단어 암기');
             currentWordIndex = wordIndexInList;
             loadWord(currentWordIndex, true);
         } else {
-            alert(`单词 "${wordKey}" 在目前字库中未找到。`);
+            alert(`단어 "${wordKey}" 이 현재 단어 목록에 없습니다.`);
         }
     }
 
@@ -2627,7 +2620,7 @@
         wordsToReview.sort((a, b) => (a.nextReviewDue || 0) - (b.nextReviewDue || 0));
 
         if (wordsToReview.length === 0) {
-            reviewListContainerEl.innerHTML = `<p class="no-reviews">${filter === 'all' ? '暂无学习记录。' : '目前筛选条件下没有需要复习的单词。'}</p>`;
+            reviewListContainerEl.innerHTML = `<p class="no-reviews">${filter === 'all' ? '학습 기록이 없습니다.' : '현재 필터에 해당하는 복습 단어가 없습니다.'}</p>`;
             return;
         }
 
@@ -2650,12 +2643,12 @@
             let statusClass = '';
             if (word.nextReviewDue <= now) {
                 statusClass = 'overdue';
-                nextReviewText = "立即复习";
+                nextReviewText = "즉시 복습";
             } else if (word.nextReviewDue <= now + 2 * 24 * 60 * 60 * 1000) {
                 statusClass = 'due-soon';
             }
 
-            reviewStatusDiv.innerHTML = `<div class="next-review">下次复习: <span class="date ${statusClass}">${nextReviewText}</span></div><div style="font-size:0.75em; color: #aaa;">上次: ${formatDate(word.lastSeen)} (次数: ${word.reviewCount || 0})</div>`;
+            reviewStatusDiv.innerHTML = `<div class="next-review">다음 복습: <span class="date ${statusClass}">${nextReviewText}</span></div><div style="font-size:0.75em; color: #aaa;">지난번: ${formatDate(word.lastSeen)} (횟수: ${word.reviewCount || 0})</div>`;
 
             li.appendChild(wordInfoDiv);
             li.appendChild(reviewStatusDiv);
@@ -2667,11 +2660,11 @@
     function updateActiveFilterButton(activeFilter) { filterButtonsReview.forEach(button => button.classList.toggle('active', button.id === `filter-${activeFilter}`)); }
 
     function showAboutPage() {
-        setActivePage('page-about', '关于本应用');
+        setActivePage('page-about', '앱 정보');
     }
 
     function initializeApp() {
-        currentUsernameDisplayEl.textContent = localStorage.getItem('lastLoggedInUser') || "汉阳大计算机学部某学生";
+        currentUsernameDisplayEl.textContent = localStorage.getItem('lastLoggedInUser') || "한양대 컴퓨터학부 학생";
 
         loadLearnedWords();
         applySavedSettings();
@@ -2689,9 +2682,9 @@
         }
 
         if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_GEMINI_API_KEY" || GEMINI_API_KEY.trim() === "" || GEMINI_API_KEY.length < 30) {
-            console.warn("警告: Gemini API 密钥无效或未在 JavaScript 中正确设置。AI 功能将受限。");
+            console.warn("警告: Gemini API 密钥无效或未在 JavaScript 中正确设置。AI 기능将受限。");
             const aiButtons = document.querySelectorAll('.ai-btn, .generic-button, .ai-action-btn');
-            aiButtons.forEach(btn => { btn.disabled = true; btn.style.opacity = 0.5; btn.title = "API Key 未设置或无效"; btn.style.cursor = "not-allowed"; });
+            aiButtons.forEach(btn => { btn.disabled = true; btn.style.opacity = 0.5; btn.title = "API 키가 설정되지 않았거나 유효하지 않습니다."; btn.style.cursor = "not-allowed"; });
 
             const aiSections = [
                 document.getElementById('page-translate'),
@@ -2714,7 +2707,7 @@
                     errorDiv.style.textAlign = 'center';
                     errorDiv.style.marginBottom = '10px';
                     errorDiv.className = 'api-error-message';
-                    errorDiv.textContent = '🚫 AI 功能受限：Gemini API 密钥无效或未设置。';
+                    errorDiv.textContent = '🚫 AI 기능受限：Gemini API 密钥无效或未设置。';
                     section.querySelector('.section-container')?.prepend(errorDiv) || section.prepend(errorDiv);
                 }
             });
@@ -2759,7 +2752,7 @@
             imageUploadInputRecEl.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (file) {
-                    if (file.size > 4 * 1024 * 1024) { alert("图片文件过大，请选择小于 4MB 的图片。"); imageUploadInputRecEl.value = ""; return; }
+                    if (file.size > 4 * 1024 * 1024) { alert("파일이 너무 큽니다. 4MB 이하의 이미지를 선택하세요."); imageUploadInputRecEl.value = ""; return; }
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         imagePreviewRecEl.src = e.target.result; imagePreviewRecEl.style.display = 'block';
@@ -2789,7 +2782,7 @@
             trashImageUploadEl.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (file) {
-                    if (file.size > 4 * 1024 * 1024) { alert("图片文件过大，请选择小于 4MB 的图片。"); trashImageUploadEl.value = ""; return; }
+                    if (file.size > 4 * 1024 * 1024) { alert("파일이 너무 큽니다. 4MB 이하의 이미지를 선택하세요."); trashImageUploadEl.value = ""; return; }
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         trashImagePreviewEl.src = e.target.result; trashImagePreviewEl.style.display = 'block';
@@ -2853,7 +2846,7 @@
             });
         }
 
-        setActivePage('page-memorize', '背单词');
+        setActivePage('page-memorize', '단어 암기');
         console.log("韩语学习助手 (AI高级定制版) 已初始化。");
 
         setTimeout(() => {
@@ -2900,7 +2893,7 @@
         if (wordToLoad) {
             loadWord(targetIndex, true);
         } else {
-            koreanWordEl.textContent = "暂无单词可学/复习。";
+            koreanWordEl.textContent = "학습/복습할 단어가 없습니다.";
             pronunciationEl.textContent = "";
             chineseTranslationEl.textContent = "";
             exampleSentenceEl.style.display = 'none';
